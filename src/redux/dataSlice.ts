@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface InitialCustomer {
-  testArray: [number, number, number],
+  testArray: Array<number>,
   currentCustomerId: number,
   currentProjectId: number,
   customers: [
@@ -43,10 +43,13 @@ export const dataSlice = createSlice({
     currentCustomerIdUpdate(state, action) {
       //   state.customers = action.payload;
     },
+    customerAdded(state, action) {
+        state.customers.push(action.payload);
+    },
   },
   extraReducers: {},
 });
 
-export const { currentCustomerIdUpdate } = dataSlice.actions;
+export const { currentCustomerIdUpdate, customerAdded } = dataSlice.actions;
 
 export default dataSlice.reducer;
