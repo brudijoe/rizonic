@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { customerAdded } from "../../redux/dataSlice";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
@@ -17,7 +17,7 @@ const AddCustomer = () => {
   const lastCustomerID = useAppSelector(
     (state) => state.data.customers[customers.length - 1].customerId
   );
-  console.log("lastCustomerID: ", lastCustomerID);
+  // console.log("lastCustomerID: ", lastCustomerID);
 
   const onAddCustomerClicked = async () => {
     if (customerName.length > 1) {

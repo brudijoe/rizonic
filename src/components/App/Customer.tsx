@@ -1,10 +1,18 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import DeleteCustomer from "./DeleteCustomer";
 // Redux
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 
 const Customer = () => {
-  const customers = useAppSelector((state) => state.data.customers);
-  console.log(customers);
+  const customersRedux = useAppSelector((state) => state.data.customers);
+
+  // console.log(customers);
+
+  const [customers, setCustomers] = useState(customersRedux);
+
+  useEffect(() => {
+    setCustomers(customersRedux);
+  }, [customersRedux]);
 
   return (
     <div>
@@ -19,6 +27,9 @@ const Customer = () => {
             <div>
               Customer-Name
               {customerEntry.customerName}
+            </div>
+            <div>
+              <DeleteCustomer currentCustomerId={customerEntry.customerId} />
             </div>
           </div>
         ))}

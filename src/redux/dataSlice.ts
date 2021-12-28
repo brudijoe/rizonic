@@ -1,10 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface InitialCustomer {
   testArray: Array<number>,
   currentCustomerId: number,
   currentProjectId: number,
-  customers: [
+  customers: 
     {
       customerId: number,
       customerName: string,
@@ -14,8 +14,8 @@ export interface InitialCustomer {
           projectName: string,
         },
       ],
-    },
-  ],
+    }[],
+  
 }
 
 const initialState: InitialCustomer = {
@@ -33,8 +33,43 @@ const initialState: InitialCustomer = {
         },
       ],
     },
+    {
+      customerId: 2,
+      customerName: "",
+      projects: [
+        {
+          projectId: 1,
+          projectName: "",
+        },
+      ],
+    },
+    {
+      customerId: 3,
+      customerName: "",
+      projects: [
+        {
+          projectId: 1,
+          projectName: "",
+        },
+      ],
+    },
   ],
 };
+
+interface CustomerIdAndCustomers {
+  currentCustomerIdProps: number;
+  customers: 
+    {
+      customerId: number;
+      customerName: string;
+      projects: [
+        {
+          projectId: number;
+          projectName: string;
+        }
+      ];
+    }[]
+}
 
 export const dataSlice = createSlice({
   name: "data",
@@ -46,10 +81,28 @@ export const dataSlice = createSlice({
     customerAdded(state, action) {
         state.customers.push(action.payload);
     },
+    customerDeleted(state, action: PayloadAction<CustomerIdAndCustomers>) {
+      const { currentCustomerIdProps, customers } = action.payload;
+
+      const existingObject = state.customers.find(
+        (obj) => obj.customerId === currentCustomerIdProps
+      );
+      
+      if (existingObject) {
+        // console.log("customer gefunden");
+        let newCustomers = customers.filter((customerEntry) => {
+          return customerEntry.customerId !== currentCustomerIdProps;
+        })
+        state.customers = newCustomers;
+      } else {
+        console.log("customer nicht gefunden");
+      }
+
+    },
   },
   extraReducers: {},
 });
 
-export const { currentCustomerIdUpdate, customerAdded } = dataSlice.actions;
+export const { currentCustomerIdUpdate, customerAdded, customerDeleted } = dataSlice.actions;
 
 export default dataSlice.reducer;
