@@ -10,21 +10,15 @@ interface Props {
 const DeleteCustomer = (props: Props) => {
   const dispatch = useAppDispatch();
   const customersRedux = useAppSelector((state) => state.data.customers);
-  //   const currentCustomerIdRedux = useAppSelector(
-  //     (state) => state.data.currentCustomerId
-  //   );
-  //   console.log("currentCustomerIdRedux: ", currentCustomerIdRedux);
-
   const currentCustomerIdProps = props.currentCustomerId;
 
+  // State for Modal if delete is okay
   const [isDelete, setIsDelete] = useState(false);
 
   const onDeleteCustomerClicked = async () => {
     // if Delete Modul accepted?
-
     try {
       const resultAction = await dispatch(
-        // Customers mitgeben
         customerDeleted({ currentCustomerIdProps, customers: customersRedux })
       );
       unwrapResult(resultAction);

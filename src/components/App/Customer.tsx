@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import DeleteCustomer from "./DeleteCustomer";
 // Redux
-import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+import { useAppSelector } from "../../redux/hooks";
 
 const Customer = () => {
   const customersRedux = useAppSelector((state) => state.data.customers);
-
-  // console.log(customers);
 
   const [customers, setCustomers] = useState(customersRedux);
 
