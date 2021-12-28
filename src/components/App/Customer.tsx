@@ -14,18 +14,15 @@ const Customer = () => {
 
   return (
     <div>
-      <div className="bg-red-300">
-        <h1>Customers</h1>
+      <div className="bg-red-200 p-3 mb-3 border border-black">
+        <h1 className="text-center text-2xl font-bold">Customers</h1>
         {customers.map((customerEntry, index) => (
-          <div key={index}>
-            <div>
-              Customer-ID
-              {customerEntry.customerId}
-            </div>
-            <div>
-              Customer-Name
-              {customerEntry.customerName}
-            </div>
+          <div
+            className="border border-black m-3 p-3 bg-yellow-300"
+            key={index}
+          >
+            <div>Customer-ID:&nbsp;{customerEntry.customerId}</div>
+            <div>Customer-Name:&nbsp;{customerEntry.customerName}</div>
             <div>
               <DeleteCustomer currentCustomerId={customerEntry.customerId} />
             </div>

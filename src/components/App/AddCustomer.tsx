@@ -44,7 +44,7 @@ const AddCustomer = () => {
   };
 
   return (
-    <div>
+    <div className="p-6 bg-blue-500 border border-black">
       <input
         className="w-full mb-2 p-1 h-7 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent border-gray-500 border"
         placeholder="Kundenname"
