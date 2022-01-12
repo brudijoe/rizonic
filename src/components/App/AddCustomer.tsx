@@ -6,7 +6,6 @@ import { unwrapResult } from "@reduxjs/toolkit";
 const AddCustomer = () => {
   const dispatch = useAppDispatch();
   const [customerName, setCustomerName] = useState<string>("");
-  console.log(customerName);
   const onCustomerNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
     setCustomerName(e.currentTarget.value);
 
