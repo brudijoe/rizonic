@@ -8,7 +8,6 @@ import { useAppSelector } from "../../redux/hooks";
 
 const Customer = () => {
   const customersRedux = useAppSelector((state) => state.data.customers);
-
   const [customers, setCustomers] = useState(customersRedux);
 
   useEffect(() => {
@@ -16,23 +15,29 @@ const Customer = () => {
   }, [customersRedux]);
 
   // Dropdown Menu for Customer
-  const [dropDownCustomer, setDropDownCustomer] = useState(false);
-  const showDropDownCustomer = () => {
-    setDropDownCustomer(!dropDownCustomer);
+  const [dropDownCustomers, setDropDownCustomers] = useState(false);
+  const showDropDownCustomers = () => {
+    setDropDownCustomers(!dropDownCustomers);
+  };
+
+  // Dropdown Menu for Projects
+  const [dropDownProjects, setDropDownProjects] = useState(false);
+  const showDropDownProjects = () => {
+    setDropDownProjects(!dropDownProjects);
   };
 
   return (
     <div>
       <div className="bg-red-200 p-3 mb-3 border border-black">
         <h1 className="text-center text-2xl font-bold">Customers</h1>
-        {dropDownCustomer ? (
+        {dropDownCustomers ? (
           <div>
             <IconContext.Provider
               value={{ size: "3em", className: "global-class-name" }}
             >
               <AiOutlineUpCircle
                 className="pl-3 cursor-pointer"
-                onClick={showDropDownCustomer}
+                onClick={showDropDownCustomers}
               />
             </IconContext.Provider>
           </div>
@@ -43,12 +48,12 @@ const Customer = () => {
             >
               <AiOutlineDownCircle
                 className="pl-3 cursor-pointer"
-                onClick={showDropDownCustomer}
+                onClick={showDropDownCustomers}
               />
             </IconContext.Provider>
           </div>
         )}
-        {dropDownCustomer &&
+        {dropDownCustomers &&
           customers.map((customerEntry) => (
             <div
               className="border border-black m-3 p-3 bg-yellow-300"
@@ -65,17 +70,12 @@ const Customer = () => {
                     />
                   </div>
                 </div>
-                {customerEntry.projects.map((projectEntry) => (
-                  <div
-                    key={projectEntry.projectId}
-                    className="w-3/6 border border-black m-3 p-3 bg-yellow-400"
-                  >
-                    <Project
-                      currentCustomerId={customerEntry.customerId}
-                      projectEntry={projectEntry}
-                    />
-                  </div>
-                ))}
+                <div className="w-3/6 border border-black m-3 p-3 bg-green-500">
+                  <Project
+                    customerEntry={customerEntry}
+                    currentCustomerId={customerEntry.customerId}
+                  />
+                </div>
               </div>
             </div>
           ))}
