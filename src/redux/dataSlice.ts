@@ -17,7 +17,7 @@ const initialState: InitialCustomer = {
   customers: [
     {
       customerId: 1,
-      customerName: "",
+      customerName: "C1",
       projects: [
         {
           projectId: 2,
@@ -35,7 +35,7 @@ const initialState: InitialCustomer = {
     },
     {
       customerId: 5,
-      customerName: "",
+      customerName: "C5",
       projects: [
         {
           projectId: 1,
@@ -94,6 +94,27 @@ export const dataSlice = createSlice({
     customerAdded(state, action) {
         state.customers.push(action.payload);
     },
+    customerEdited(state, action) {
+      // Hier fehlt noch new CustomerName vom Imput
+      const { currentCustomerIdProps, customerName } = action.payload;
+
+      console.log(currentCustomerIdProps);
+      
+
+      const existingObject = state.customers.find(
+        (obj) => obj.customerId === currentCustomerIdProps
+      );
+      
+      if (existingObject) {
+        console.log("Customer found");
+        // als Test soll der name AKDA, in ZAP1 umbennant werden
+        state.customers.find(
+          (obj) => obj.customerId === currentCustomerIdProps
+        ).customerName = customerName;
+      } else {
+        console.log("Can't find customer");
+      }
+    },
     customerDeleted(state, action: PayloadAction<CustomerIdAndCustomers>) {
       const { currentCustomerIdProps, customers } = action.payload;
 
@@ -139,6 +160,6 @@ export const dataSlice = createSlice({
   extraReducers: {},
 });
 
-export const { currentCustomerIdUpdate, customerAdded, customerDeleted, projectDeleted } = dataSlice.actions;
+export const { currentCustomerIdUpdate, customerAdded, customerEdited, customerDeleted, projectDeleted } = dataSlice.actions;
 
 export default dataSlice.reducer;

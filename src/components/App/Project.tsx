@@ -24,7 +24,7 @@ const Project = (props: Props) => {
 
   return (
     <div>
-      <h1 className="font-bold text-xl">Projects</h1>
+      <h1 className="text-center font-bold text-xl">Projects</h1>
       {dropDownProjects ? (
         <div>
           <IconContext.Provider

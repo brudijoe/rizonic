@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { IconContext } from "react-icons";
 import { AiOutlineDownCircle, AiOutlineUpCircle } from "react-icons/ai";
 import DeleteCustomer from "./DeleteCustomer";
+import EditCustomer from "./EditCustomer";
 import Project from "./Project";
 // Redux
 import { useAppSelector } from "../../redux/hooks";
@@ -15,15 +16,10 @@ const Customer = () => {
   }, [customersRedux]);
 
   // Dropdown Menu for Customer
-  const [dropDownCustomers, setDropDownCustomers] = useState(false);
+  // ! Set to true for Development
+  const [dropDownCustomers, setDropDownCustomers] = useState(true);
   const showDropDownCustomers = () => {
     setDropDownCustomers(!dropDownCustomers);
-  };
-
-  // Dropdown Menu for Projects
-  const [dropDownProjects, setDropDownProjects] = useState(false);
-  const showDropDownProjects = () => {
-    setDropDownProjects(!dropDownProjects);
   };
 
   return (
@@ -60,21 +56,28 @@ const Customer = () => {
               key={customerEntry.customerId}
             >
               <div className="flex">
-                <div className="w-3/6 mr-3 border border-black m-3 p-3">
+                <div className="w-full mr-3 border border-black m-3 p-3">
                   <h1>Customer-Information</h1>
                   <div>Customer-ID:&nbsp;{customerEntry.customerId}</div>
                   <div>Customer-Name:&nbsp;{customerEntry.customerName}</div>
-                  <div className="mt-3">
-                    <DeleteCustomer
+                  <div className="flex flex-row mt-3 mb-3">
+                    <div className="w-3/6 mr-3">
+                      <EditCustomer
+                        currentCustomerId={customerEntry.customerId}
+                      />
+                    </div>
+                    <div className="w-3/6">
+                      <DeleteCustomer
+                        currentCustomerId={customerEntry.customerId}
+                      />
+                    </div>
+                  </div>
+                  <div className="w-full border border-black p-3 bg-green-500">
+                    <Project
+                      customerEntry={customerEntry}
                       currentCustomerId={customerEntry.customerId}
                     />
                   </div>
-                </div>
-                <div className="w-3/6 border border-black m-3 p-3 bg-green-500">
-                  <Project
-                    customerEntry={customerEntry}
-                    currentCustomerId={customerEntry.customerId}
-                  />
                 </div>
               </div>
             </div>

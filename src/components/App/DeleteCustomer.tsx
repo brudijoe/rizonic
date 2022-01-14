@@ -58,7 +58,7 @@ const DeleteCustomer = (props: Props) => {
 
   const Modal = () => {
     return (
-      <div className="flex justify-center">
+      <div>
         {modalIsOpen ? (
           <div className="border border-black p-3 bg-blue-300">
             <h1 className="text-center">Delete Customer?</h1>
