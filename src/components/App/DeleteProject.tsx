@@ -60,8 +60,8 @@ const DeleteProject = (props: Props) => {
     setModalIsOpen(true);
   };
 
-  const DeleteButton = () => {
-    return (
+  return (
+    <div>
       <div>
         {modalIsOpen ? (
           <div className="hidden"></div>
@@ -75,11 +75,7 @@ const DeleteProject = (props: Props) => {
           </button>
         )}
       </div>
-    );
-  };
 
-  const Modal = () => {
-    return (
       <div className="flex justify-center">
         {modalIsOpen ? (
           <div className="border border-black p-3 bg-blue-300">
@@ -109,13 +105,6 @@ const DeleteProject = (props: Props) => {
           <div className="hidden">Modal is closed</div>
         )}
       </div>
-    );
-  };
-
-  return (
-    <div>
-      <DeleteButton />
-      <Modal />
     </div>
   );
 };

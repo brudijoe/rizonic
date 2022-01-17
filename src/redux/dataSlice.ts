@@ -9,6 +9,7 @@ export interface InitialCustomer {
         {
           projectId: number,
           projectName: string,
+          projectStatus: string
         }[],
     }[],
 }
@@ -22,14 +23,17 @@ const initialState: InitialCustomer = {
         {
           projectId: 2,
           projectName: "C1_P1",
+          projectStatus: "In progress"
         },
         {
           projectId: 5,
           projectName: "C1_P2",
+          projectStatus: "On hold"
         },
         {
           projectId: 10,
           projectName: "C1_P3",
+          projectStatus: "Done"
         },
       ],
     },
@@ -40,10 +44,12 @@ const initialState: InitialCustomer = {
         {
           projectId: 1,
           projectName: "C2_P1",
+          projectStatus: "In progress"
         },
         {
           projectId: 150,
           projectName: "C2_P2",
+          projectStatus: "In progress"
         },
       ],
     },
@@ -54,6 +60,7 @@ const initialState: InitialCustomer = {
         {
           projectId: 5,
           projectName: "C3_P1",
+          projectStatus: "In progress"
         },
       ],
     },
@@ -70,6 +77,7 @@ interface CustomerIdAndCustomers {
         {
           projectId: number;
           projectName: string;
+          projectStatus: string
         }[],
     }[]
 }
@@ -81,6 +89,7 @@ interface CustomerIdAndProjects {
     {
       projectId: number;
       projectName: string;
+      projectStatus: string
     }[],
 }
 
@@ -95,19 +104,14 @@ export const dataSlice = createSlice({
         state.customers.push(action.payload);
     },
     customerEdited(state, action) {
-      // Hier fehlt noch new CustomerName vom Imput
       const { currentCustomerIdProps, customerName } = action.payload;
-
-      console.log(currentCustomerIdProps);
       
-
       const existingObject = state.customers.find(
         (obj) => obj.customerId === currentCustomerIdProps
       );
       
       if (existingObject) {
         console.log("Customer found");
-        // als Test soll der name AKDA, in ZAP1 umbennant werden
         state.customers.find(
           (obj) => obj.customerId === currentCustomerIdProps
         ).customerName = customerName;
@@ -130,6 +134,30 @@ export const dataSlice = createSlice({
         state.customers = newCustomers;
       } else {
         console.log("Can't find customer");
+      }
+    },
+    projectEdited(state, action) {
+      // customer id, project id, neuer name bzw. auch neuer status
+      const { currentCustomerIdProps, currentProjectIdProps, projectName } = action.payload;
+
+      const existingObject = state.customers.find(
+        (obj) => obj.customerId === currentCustomerIdProps
+      ).projects.find(
+        (obj) => obj.projectId === currentProjectIdProps
+      );
+
+      if (existingObject) {
+        console.log("Project found");
+        // Change Name
+        state.customers.find(
+          (obj) => obj.customerId === currentCustomerIdProps
+        ).projects.find(
+          (obj) => obj.projectId === currentProjectIdProps
+        ).projectName = projectName;
+        // Change Status
+
+      } else {
+        console.log("Can't find project");
       }
     },
     projectDeleted(state, action: PayloadAction<CustomerIdAndProjects>) {
@@ -160,6 +188,6 @@ export const dataSlice = createSlice({
   extraReducers: {},
 });
 
-export const { currentCustomerIdUpdate, customerAdded, customerEdited, customerDeleted, projectDeleted } = dataSlice.actions;
+export const { currentCustomerIdUpdate, customerAdded, customerEdited, customerDeleted, projectEdited, projectDeleted } = dataSlice.actions;
 
 export default dataSlice.reducer;

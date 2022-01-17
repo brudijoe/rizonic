@@ -1,48 +1,51 @@
 import { useState } from "react";
-import { customerEdited } from "../../redux/dataSlice";
+import { projectEdited } from "../../redux/dataSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 
 interface Props {
   currentCustomerId: number;
+  currentProjectId: number;
 }
 
-const EditCustomer = (props: Props) => {
+const EditProject = (props: Props) => {
   const dispatch = useAppDispatch();
 
   const currentCustomerIdProps = props.currentCustomerId;
+  const currentProjectIdProps = props.currentProjectId;
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const handleCustomerEdited = async () => {
-    if (customerName.length > 0) {
+  const handleProjectEdited = async () => {
+    if (projectName.length > 0) {
       try {
         const resultAction = await dispatch(
-          customerEdited({
+          projectEdited({
             currentCustomerIdProps,
-            customerName,
+            currentProjectIdProps,
+            projectName,
           })
         );
         unwrapResult(resultAction);
       } catch (err) {
-        console.error("Failed to edit customer: ", err);
+        console.error("Failed to edit project: ", err);
       }
-      setCustomerName("");
+      setProjectName("");
       setModalIsOpen(false);
     }
   };
 
-  const onEditCustomerClicked = async () => {
+  const onEditProjectClicked = async () => {
     setModalIsOpen(true);
   };
 
-  // CustomerName
-  const [customerName, setCustomerName] = useState<string>("");
-  const handleCustomerNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
-    setCustomerName(e.currentTarget.value);
+  // Projectname
+  const [projectName, setProjectName] = useState<string>("");
+  const handleProjectNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
+    setProjectName(e.currentTarget.value);
 
   return (
-    <div className="">
+    <div>
       <div>
         {modalIsOpen ? (
           <div className="hidden"></div>
@@ -50,29 +53,29 @@ const EditCustomer = (props: Props) => {
           <button
             type="button"
             className="w-full h-7 bg-blue-500 border-black border hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
-            onClick={onEditCustomerClicked}
+            onClick={onEditProjectClicked}
           >
-            Edit Customer
+            Edit Project
           </button>
         )}
       </div>
       <div>
         {modalIsOpen ? (
           <div className="border border-black p-3 bg-blue-300">
-            <h1 className="text-center">Edit Customer?</h1>
+            <h1 className="text-center">Edit Project?</h1>
             <div className="flex flex-row p-3">
-              <div className="w-3/6">Customer-Name:</div>
+              <div className="w-3/6">Project-Name:</div>
               <div className="w-3/6">
                 <input
                   maxLength={100}
                   className="w-full mb-3 p-3 bg-gray-200 border-gray-500 border box-border resize-y h-7 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
-                  value={customerName}
-                  onChange={handleCustomerNameChanged}
+                  value={projectName}
+                  onChange={handleProjectNameChanged}
                 />
                 <button
                   type="button"
                   className="w-full h-7 bg-green-500 border-black border hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
-                  onClick={handleCustomerEdited}
+                  onClick={handleProjectEdited}
                 >
                   Change Name
                 </button>
@@ -87,4 +90,4 @@ const EditCustomer = (props: Props) => {
   );
 };
 
-export default EditCustomer;
+export default EditProject;

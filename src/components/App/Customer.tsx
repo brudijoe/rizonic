@@ -24,7 +24,7 @@ const Customer = () => {
 
   return (
     <div>
-      <div className="bg-red-200 p-3 mb-3 border border-black">
+      <div className="bg-red-200 p-3 border border-black">
         <h1 className="text-center text-2xl font-bold">Customers</h1>
         {dropDownCustomers ? (
           <div>
