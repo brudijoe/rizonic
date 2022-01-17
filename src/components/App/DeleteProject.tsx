@@ -14,19 +14,13 @@ const DeleteProject = (props: Props) => {
 
   const currentCustomerIdProps = props.currentCustomerId;
   const currentProjectIdProps = props.currentProjectId;
-  // console.log(currentCustomerIdProps);
 
-  // Müsste index sein und nicht id, alternative wieder .find benutzen
-  // const projectsRedux = useAppSelector(
-  //   (state) => state.data.customers[0].projects
-  // );
   const projectsRedux = useAppSelector(
     (state) =>
       state.data.customers.find(
         (obj) => obj.customerId === currentCustomerIdProps
       )?.projects
   );
-  console.log(projectsRedux);
 
   const [projects, setProjects] = useState(projectsRedux);
 

@@ -47,7 +47,7 @@ const EditProject = (props: Props) => {
   const handleProjectNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
     setProjectName(e.currentTarget.value);
   // Project-Status
-  const projectStatus = ["In progress", "On hold", "Done"];
+  const projectStatus = ["", "In progress", "On hold", "Done"];
   const [currentProjectStatus, setCurrentProjectStatus] = useState<string>("");
 
   const handleNewProjectStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -97,6 +97,7 @@ const EditProject = (props: Props) => {
                     <option value={projectStatus[0]}>{projectStatus[0]}</option>
                     <option value={projectStatus[1]}>{projectStatus[1]}</option>
                     <option value={projectStatus[2]}>{projectStatus[2]}</option>
+                    <option value={projectStatus[3]}>{projectStatus[3]}</option>
                   </select>
                 </div>
               </div>
