@@ -67,6 +67,7 @@ const Project = (props: Props) => {
                   <EditProject
                     currentCustomerId={props.currentCustomerId}
                     currentProjectId={projectEntry.projectId}
+                    currentProjectName={projectEntry.projectName}
                   />
                 </div>
                 <div className="w-3/6">

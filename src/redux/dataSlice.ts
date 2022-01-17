@@ -138,7 +138,7 @@ export const dataSlice = createSlice({
     },
     projectEdited(state, action) {
       // customer id, project id, neuer name bzw. auch neuer status
-      const { currentCustomerIdProps, currentProjectIdProps, projectName } = action.payload;
+      const { currentCustomerIdProps, currentProjectIdProps, projectName, projectStatus } = action.payload;
 
       const existingObject = state.customers.find(
         (obj) => obj.customerId === currentCustomerIdProps
@@ -155,6 +155,11 @@ export const dataSlice = createSlice({
           (obj) => obj.projectId === currentProjectIdProps
         ).projectName = projectName;
         // Change Status
+        state.customers.find(
+          (obj) => obj.customerId === currentCustomerIdProps
+        ).projects.find(
+          (obj) => obj.projectId === currentProjectIdProps
+        ).projectStatus = projectStatus;
 
       } else {
         console.log("Can't find project");
