@@ -27,28 +27,29 @@ const Project = (props: Props) => {
 
   return (
     <div>
-      <h1 className="text-center font-bold text-xl">Projects</h1>
       {dropDownProjects ? (
-        <div>
-          <IconContext.Provider
-            value={{ size: "3em", className: "global-class-name" }}
-          >
-            <AiOutlineUpCircle
-              className="pl-3 cursor-pointer"
-              onClick={showDropDownProjects}
-            />
-          </IconContext.Provider>
+        <div className="flex flex-row mb-3 items-center">
+          <div>
+            <IconContext.Provider value={{ size: "3em" }}>
+              <AiOutlineUpCircle
+                className="mr-3 pl-3 cursor-pointer"
+                onClick={showDropDownProjects}
+              />
+            </IconContext.Provider>
+          </div>
+          <h1 className="text-center font-bold text-xl">Projects</h1>
         </div>
       ) : (
-        <div>
-          <IconContext.Provider
-            value={{ size: "3em", className: "global-class-name" }}
-          >
-            <AiOutlineDownCircle
-              className="pl-3 cursor-pointer"
-              onClick={showDropDownProjects}
-            />
-          </IconContext.Provider>
+        <div className="flex flex-row items-center">
+          <div>
+            <IconContext.Provider value={{ size: "3em" }}>
+              <AiOutlineDownCircle
+                className="mr-3 pl-3 cursor-pointer"
+                onClick={showDropDownProjects}
+              />
+            </IconContext.Provider>
+          </div>
+          <h1 className="text-center font-bold text-xl">Projects</h1>
         </div>
       )}
 
@@ -56,10 +57,10 @@ const Project = (props: Props) => {
         props.customerEntry.projects.map((projectEntry) => (
           <div
             key={projectEntry.projectId}
-            className="w-full border border-black p-3 mb-3 bg-green-600"
+            className="w-full rounded border border-black p-3 mb-3 bg-green-600"
           >
             <div>
-              <h1>Project-Information</h1>
+              <h1 className="font-bold">Project-Information</h1>
               <div>Project-ID:&nbsp;{projectEntry.projectId}</div>
               <div>Project-Name:&nbsp;{projectEntry.projectName}</div>
               <div>Project-Status:&nbsp;{projectEntry.projectStatus}</div>

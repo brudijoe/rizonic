@@ -25,59 +25,59 @@ const Customer = () => {
 
   return (
     <div>
-      <div className="bg-red-200 p-3 border border-black">
-        <h1 className="text-center text-2xl font-bold">Customers</h1>
+      <div className="bg-red-400 rounded p-3 border border-black">
         {dropDownCustomers ? (
-          <div>
-            <IconContext.Provider value={{ size: "3em" }}>
-              <AiOutlineUpCircle
-                className="pl-3 cursor-pointer"
-                onClick={showDropDownCustomers}
-              />
-            </IconContext.Provider>
+          <div className="flex flex-row items-center">
+            <div>
+              <IconContext.Provider value={{ size: "3em" }}>
+                <AiOutlineUpCircle
+                  className="mr-3 pl-3 cursor-pointer"
+                  onClick={showDropDownCustomers}
+                />
+              </IconContext.Provider>
+            </div>
+            <h1 className="text-center text-2xl font-bold">Customers</h1>
           </div>
         ) : (
-          <div>
-            <IconContext.Provider value={{ size: "3em" }}>
-              <AiOutlineDownCircle
-                className="pl-3 cursor-pointer"
-                onClick={showDropDownCustomers}
-              />
-            </IconContext.Provider>
+          <div className="flex flex-row items-center">
+            <div>
+              <IconContext.Provider value={{ size: "3em" }}>
+                <AiOutlineDownCircle
+                  className="mr-3 pl-3 cursor-pointer"
+                  onClick={showDropDownCustomers}
+                />
+              </IconContext.Provider>
+            </div>
+            <h1 className="text-center text-2xl font-bold">Customers</h1>
           </div>
         )}
         {dropDownCustomers &&
           customers.map((customerEntry) => (
-            <div
-              className="border border-black m-3 p-3 bg-yellow-300"
-              key={customerEntry.customerId}
-            >
-              <div className="flex">
-                <div className="w-full mr-3 border border-black m-3 p-3">
-                  <h1>Customer-Information</h1>
-                  <div>Customer-ID:&nbsp;{customerEntry.customerId}</div>
-                  <div>Customer-Name:&nbsp;{customerEntry.customerName}</div>
-                  <div className="flex flex-row mt-3 mb-3">
-                    <div className="w-2/6 mr-3">
-                      <AddCustomer />
-                    </div>
-                    <div className="w-2/6 mr-3">
-                      <EditCustomer
-                        currentCustomerId={customerEntry.customerId}
-                      />
-                    </div>
-                    <div className="w-2/6">
-                      <DeleteCustomer
-                        currentCustomerId={customerEntry.customerId}
-                      />
-                    </div>
+            <div className="flex" key={customerEntry.customerId}>
+              <div className="w-full bg-gray-300 rounded mr-3 border border-black m-3 p-3">
+                <h1 className="font-bold">Customer-Information</h1>
+                <div>Customer-ID:&nbsp;{customerEntry.customerId}</div>
+                <div>Customer-Name:&nbsp;{customerEntry.customerName}</div>
+                <div className="flex flex-row mt-3 mb-3">
+                  <div className="w-2/6 mr-3">
+                    <AddCustomer />
                   </div>
-                  <div className="w-full border border-black p-3 bg-green-500">
-                    <Project
-                      customerEntry={customerEntry}
+                  <div className="w-2/6 mr-3">
+                    <EditCustomer
                       currentCustomerId={customerEntry.customerId}
                     />
                   </div>
+                  <div className="w-2/6">
+                    <DeleteCustomer
+                      currentCustomerId={customerEntry.customerId}
+                    />
+                  </div>
+                </div>
+                <div className="w-full rounded border border-black p-3 bg-indigo-300">
+                  <Project
+                    customerEntry={customerEntry}
+                    currentCustomerId={customerEntry.customerId}
+                  />
                 </div>
               </div>
             </div>

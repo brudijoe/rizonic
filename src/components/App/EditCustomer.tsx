@@ -52,7 +52,7 @@ const EditCustomer = (props: Props) => {
         ) : (
           <button
             type="button"
-            className="w-full h-7 bg-blue-500 border-black border hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+            className="w-full rounded h-7 bg-blue-500 border-black border hover:bg-blue-300"
             onClick={openModal}
           >
             Edit Customer
@@ -61,7 +61,7 @@ const EditCustomer = (props: Props) => {
       </div>
       <div>
         {modalIsOpen ? (
-          <div className="border border-black p-3 bg-blue-300">
+          <div className="rounded border border-black p-3 bg-blue-500">
             <div className="flex flex-row justify-between">
               <div className="invisible">Hidden</div>
               <h1 className="text-center">Edit Customer?</h1>
@@ -79,13 +79,13 @@ const EditCustomer = (props: Props) => {
               <div className="w-3/6">
                 <input
                   maxLength={100}
-                  className="w-full mb-3 p-3 bg-gray-200 border-gray-500 border box-border resize-y h-7 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                  className="w-full h-7 mb-3 p-3 rounded border border-black box-border resize-y focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
                   value={customerName}
                   onChange={handleCustomerNameChanged}
                 />
                 <button
                   type="button"
-                  className="w-full h-7 bg-green-500 border-black border hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+                  className="w-full rounded h-7 bg-blue-600 border-black border hover:bg-blue-300"
                   onClick={handleCustomerEdited}
                 >
                   Change Customer

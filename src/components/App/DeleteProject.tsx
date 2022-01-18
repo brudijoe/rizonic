@@ -64,7 +64,7 @@ const DeleteProject = (props: Props) => {
         ) : (
           <button
             type="button"
-            className="w-full h-7 bg-red-500 border-black border hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+            className="w-full h-7 rounded bg-red-500 border-black border hover:bg-red-300 "
             onClick={openModal}
           >
             Delete Project
@@ -73,7 +73,7 @@ const DeleteProject = (props: Props) => {
       </div>
 
       {modalIsOpen ? (
-        <div className="border border-black p-3 bg-blue-300">
+        <div className="rounded border border-black p-3 bg-red-500">
           <div className="flex flex-row justify-between">
             <div className="invisible">Hidden</div>
             <h1 className="text-center">Delete Project?</h1>
@@ -89,7 +89,7 @@ const DeleteProject = (props: Props) => {
           <div className="flex flex-row p-3">
             <button
               type="button"
-              className="w-full h-7 bg-green-500 border-black border hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+              className="w-full h-7 rounded bg-red-600 border-black border hover:bg-red-300 "
               onClick={handleProjectDeletedYes}
             >
               Yes

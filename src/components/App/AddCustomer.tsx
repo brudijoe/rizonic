@@ -56,7 +56,7 @@ const AddCustomer = () => {
         ) : (
           <button
             type="button"
-            className="w-full h-7 bg-green-500 border-black border hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+            className="w-full h-7 rounded bg-green-500 border-black border hover:bg-green-300 "
             onClick={openModal}
           >
             Add Customer
@@ -66,7 +66,7 @@ const AddCustomer = () => {
 
       <div>
         {modalIsOpen ? (
-          <div className="border border-black p-3 bg-blue-300">
+          <div className="rounded border border-black p-3 bg-green-500">
             <div className="flex flex-row justify-between">
               <div className="invisible">Hidden</div>
               <h1 className="text-center">Add Customer?</h1>
@@ -83,7 +83,7 @@ const AddCustomer = () => {
               <div className="w-3/6">Customer-Name:</div>
               <div className="w-3/6">
                 <input
-                  className="w-full mb-2 p-1 h-7 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent border-gray-500 border"
+                  className="w-full h-7 mb-3 p-3 rounded border border-black box-border resize-y focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
                   onChange={onCustomerNameChanged}
                   value={customerName}
                   minLength={2}
@@ -91,7 +91,7 @@ const AddCustomer = () => {
                 />
                 <button
                   type="button"
-                  className="w-full h-7 bg-green-500 border-black border hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+                  className="w-full h-7 rounded bg-green-600 border-black border hover:bg-green-300 "
                   onClick={onAddCustomerClicked}
                 >
                   Add Customer

@@ -65,7 +65,7 @@ const EditProject = (props: Props) => {
         ) : (
           <button
             type="button"
-            className="w-full h-7 bg-blue-500 border-black border hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+            className="w-full h-7 rounded border border-black bg-blue-500 hover:bg-blue-300 "
             onClick={openModal}
           >
             Edit Project
@@ -74,7 +74,7 @@ const EditProject = (props: Props) => {
       </div>
       <div>
         {modalIsOpen ? (
-          <div className="border border-black p-3 bg-blue-300">
+          <div className="p-3 rounded border border-black bg-blue-500">
             <div className="flex flex-row justify-between">
               <div className="invisible">Hidden</div>
               <h1 className="text-center">Edit Project?</h1>
@@ -93,7 +93,7 @@ const EditProject = (props: Props) => {
                 <div className="w-3/6">
                   <input
                     maxLength={100}
-                    className="w-full mb-3 p-3 bg-gray-200 border-gray-500 border box-border resize-y h-7 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                    className="w-full h-7 mb-3 p-3 rounded border border-black box-border resize-y focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
                     value={projectName}
                     onChange={handleProjectNameChanged}
                   />
@@ -103,7 +103,7 @@ const EditProject = (props: Props) => {
                 <div className="w-3/6">Project-Status:</div>
                 <div className="w-3/6">
                   <select
-                    className="w-full"
+                    className="w-full h-7 rounded"
                     name="projectstatus"
                     id="projectstatus"
                     onChange={handleNewProjectStatus}
@@ -119,7 +119,7 @@ const EditProject = (props: Props) => {
                 <div className="w-3/6 invisible"></div>
                 <button
                   type="button"
-                  className="w-3/6 h-7 bg-green-500 border-black border hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+                  className="w-3/6 h-7 rounded border-black border bg-blue-600 hover:bg-blue-300 "
                   onClick={handleProjectEdited}
                 >
                   Change Project
