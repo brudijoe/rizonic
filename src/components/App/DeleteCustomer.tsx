@@ -15,8 +15,6 @@ const DeleteCustomer = (props: Props) => {
   const customersRedux = useAppSelector((state) => state.data.customers);
   const currentCustomerIdProps = props.currentCustomerId;
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
   const handleCustomerDeletedYes = async () => {
     // Can't delete if only 1 customer is remaining
     if (customersRedux.length > 1) {
@@ -31,10 +29,12 @@ const DeleteCustomer = (props: Props) => {
     }
     setModalIsOpen(false);
   };
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const closeModal = async () => {
     setModalIsOpen(false);
   };
-  const onDeleteCustomerClicked = async () => {
+  const openModal = async () => {
     setModalIsOpen(true);
   };
 
@@ -47,7 +47,7 @@ const DeleteCustomer = (props: Props) => {
           <button
             type="button"
             className="w-full h-7 bg-red-500 border-black border hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
-            onClick={onDeleteCustomerClicked}
+            onClick={openModal}
             data-test-id="CustomersDeleteButton"
           >
             Delete Customer

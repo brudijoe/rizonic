@@ -14,8 +14,6 @@ const EditCustomer = (props: Props) => {
 
   const currentCustomerIdProps = props.currentCustomerId;
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
   const handleCustomerEdited = async () => {
     if (customerName.length > 0) {
       try {
@@ -34,6 +32,7 @@ const EditCustomer = (props: Props) => {
     }
   };
 
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const openModal = () => {
     setModalIsOpen(true);
   };
@@ -41,7 +40,6 @@ const EditCustomer = (props: Props) => {
     setModalIsOpen(false);
   };
 
-  // CustomerName
   const [customerName, setCustomerName] = useState<string>("");
   const handleCustomerNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
     setCustomerName(e.currentTarget.value);

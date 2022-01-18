@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { projectEdited } from "../../redux/dataSlice";
-import { useAppDispatch } from "../../redux/hooks";
+import { projectAdded } from "../../redux/dataSlice";
+import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { IconContext } from "react-icons";
 import { AiOutlineClose } from "react-icons/ai";
@@ -8,47 +8,55 @@ import { AiOutlineClose } from "react-icons/ai";
 interface Props {
   currentCustomerId: number;
   currentProjectId: number;
-  currentProjectName: string;
 }
 
-const EditProject = (props: Props) => {
+const AddProject = (props: Props) => {
   const dispatch = useAppDispatch();
 
-  const currentCustomerIdProps = props.currentCustomerId;
-  const currentProjectIdProps = props.currentProjectId;
+  const [projectName, setProjectName] = useState<string>("");
+  const onProjectNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
+    setProjectName(e.currentTarget.value);
 
-  const handleProjectEdited = async () => {
-    if (projectName.length > 0) {
+  const currentCustomerIdProps = props.currentCustomerId;
+  const projects = useAppSelector(
+    (state) =>
+      state.data.customers.find(
+        (obj) => obj.customerId === currentCustomerIdProps
+      ).projects
+  );
+  const lastProjectId = useAppSelector(
+    (state) =>
+      state.data.customers.find(
+        (obj) => obj.customerId === currentCustomerIdProps
+      ).projects[projects.length - 1].projectId
+  );
+
+  const onAddProjectClicked = async () => {
+    if (projectName.length > 1) {
       try {
         const resultAction = await dispatch(
-          projectEdited({
+          projectAdded({
             currentCustomerIdProps,
-            currentProjectIdProps,
+            projectId: lastProjectId + 1,
             projectName,
             projectStatus: currentProjectStatus,
           })
         );
         unwrapResult(resultAction);
+        setProjectName("");
       } catch (err) {
-        console.error("Failed to edit project: ", err);
+        console.error("Failed to add new project: ", err);
       }
-      setModalIsOpen(false);
     }
   };
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const openModal = async () => {
+  const openModal = () => {
     setModalIsOpen(true);
   };
-  const closeModal = async () => {
+  const closeModal = () => {
     setModalIsOpen(false);
   };
-
-  const [projectName, setProjectName] = useState<string>(
-    props.currentProjectName
-  );
-  const handleProjectNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
-    setProjectName(e.currentTarget.value);
 
   const projectStatus = ["", "In progress", "On hold", "Done"];
   const [currentProjectStatus, setCurrentProjectStatus] = useState<string>("");
@@ -58,26 +66,27 @@ const EditProject = (props: Props) => {
   };
 
   return (
-    <div>
+    <div className="">
       <div>
         {modalIsOpen ? (
           <div className="hidden"></div>
         ) : (
           <button
             type="button"
-            className="w-full h-7 bg-blue-500 border-black border hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+            className="w-full h-7 bg-green-500 border-black border hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
             onClick={openModal}
           >
-            Edit Project
+            Add Project
           </button>
         )}
       </div>
+
       <div>
         {modalIsOpen ? (
           <div className="border border-black p-3 bg-blue-300">
             <div className="flex flex-row justify-between">
               <div className="invisible">Hidden</div>
-              <h1 className="text-center">Edit Project?</h1>
+              <h1 className="text-center">Add Project?</h1>
               <div>
                 <IconContext.Provider value={{ size: "1.25em" }}>
                   <AiOutlineClose
@@ -95,7 +104,7 @@ const EditProject = (props: Props) => {
                     maxLength={100}
                     className="w-full mb-3 p-3 bg-gray-200 border-gray-500 border box-border resize-y h-7 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
                     value={projectName}
-                    onChange={handleProjectNameChanged}
+                    onChange={onProjectNameChanged}
                   />
                 </div>
               </div>
@@ -120,9 +129,9 @@ const EditProject = (props: Props) => {
                 <button
                   type="button"
                   className="w-3/6 h-7 bg-green-500 border-black border hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
-                  onClick={handleProjectEdited}
+                  onClick={onAddProjectClicked}
                 >
-                  Change Project
+                  Add Project
                 </button>
               </div>
             </div>
@@ -135,4 +144,4 @@ const EditProject = (props: Props) => {
   );
 };
 
-export default EditProject;
+export default AddProject;

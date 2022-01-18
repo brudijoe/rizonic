@@ -12,7 +12,6 @@ interface Props {
 
 const DeleteProject = (props: Props) => {
   const dispatch = useAppDispatch();
-  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const currentCustomerIdProps = props.currentCustomerId;
   const currentProjectIdProps = props.currentProjectId;
@@ -48,11 +47,12 @@ const DeleteProject = (props: Props) => {
     }
     setModalIsOpen(false);
   };
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const closeModal = async () => {
     setModalIsOpen(false);
   };
-
-  const onDeleteProjectClicked = async () => {
+  const openModal = async () => {
     setModalIsOpen(true);
   };
 
@@ -65,7 +65,7 @@ const DeleteProject = (props: Props) => {
           <button
             type="button"
             className="w-full h-7 bg-red-500 border-black border hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
-            onClick={onDeleteProjectClicked}
+            onClick={openModal}
           >
             Delete Project
           </button>
@@ -76,7 +76,7 @@ const DeleteProject = (props: Props) => {
         <div className="border border-black p-3 bg-blue-300">
           <div className="flex flex-row justify-between">
             <div className="invisible">Hidden</div>
-            <h1 className="text-center">Delete Customer?</h1>
+            <h1 className="text-center">Delete Project?</h1>
             <div>
               <IconContext.Provider value={{ size: "1.25em" }}>
                 <AiOutlineClose

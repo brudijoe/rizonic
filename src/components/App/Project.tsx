@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IconContext } from "react-icons";
 import { AiOutlineDownCircle, AiOutlineUpCircle } from "react-icons/ai";
+import AddProject from "./AddProject";
 import DeleteProject from "./DeleteProject";
 import EditProject from "./EditProject";
 
@@ -63,14 +64,20 @@ const Project = (props: Props) => {
               <div>Project-Name:&nbsp;{projectEntry.projectName}</div>
               <div>Project-Status:&nbsp;{projectEntry.projectStatus}</div>
               <div className="flex flex-row mt-3">
-                <div className="w-3/6 mr-3">
+                <div className="w-2/6 mr-3">
+                  <AddProject
+                    currentCustomerId={props.currentCustomerId}
+                    currentProjectId={projectEntry.projectId}
+                  />
+                </div>
+                <div className="w-2/6 mr-3">
                   <EditProject
                     currentCustomerId={props.currentCustomerId}
                     currentProjectId={projectEntry.projectId}
                     currentProjectName={projectEntry.projectName}
                   />
                 </div>
-                <div className="w-3/6">
+                <div className="w-2/6">
                   <DeleteProject
                     currentCustomerId={props.currentCustomerId}
                     currentProjectId={projectEntry.projectId}
