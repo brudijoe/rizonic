@@ -34,10 +34,10 @@ const EditCustomer = (props: Props) => {
     }
   };
 
-  const onEditCustomerClicked = async () => {
+  const openModal = () => {
     setModalIsOpen(true);
   };
-  const closeModal = async () => {
+  const closeModal = () => {
     setModalIsOpen(false);
   };
 
@@ -55,7 +55,7 @@ const EditCustomer = (props: Props) => {
           <button
             type="button"
             className="w-full h-7 bg-blue-500 border-black border hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
-            onClick={onEditCustomerClicked}
+            onClick={openModal}
           >
             Edit Customer
           </button>
@@ -90,7 +90,7 @@ const EditCustomer = (props: Props) => {
                   className="w-full h-7 bg-green-500 border-black border hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
                   onClick={handleCustomerEdited}
                 >
-                  Change Name
+                  Change Customer
                 </button>
               </div>
             </div>

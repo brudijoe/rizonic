@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { IconContext } from "react-icons";
 import { AiOutlineDownCircle, AiOutlineUpCircle } from "react-icons/ai";
+import AddCustomer from "./AddCustomer";
 import DeleteCustomer from "./DeleteCustomer";
 import EditCustomer from "./EditCustomer";
 import Project from "./Project";
@@ -28,9 +29,7 @@ const Customer = () => {
         <h1 className="text-center text-2xl font-bold">Customers</h1>
         {dropDownCustomers ? (
           <div>
-            <IconContext.Provider
-              value={{ size: "3em", className: "global-class-name" }}
-            >
+            <IconContext.Provider value={{ size: "3em" }}>
               <AiOutlineUpCircle
                 className="pl-3 cursor-pointer"
                 onClick={showDropDownCustomers}
@@ -39,9 +38,7 @@ const Customer = () => {
           </div>
         ) : (
           <div>
-            <IconContext.Provider
-              value={{ size: "3em", className: "global-class-name" }}
-            >
+            <IconContext.Provider value={{ size: "3em" }}>
               <AiOutlineDownCircle
                 className="pl-3 cursor-pointer"
                 onClick={showDropDownCustomers}
@@ -61,12 +58,15 @@ const Customer = () => {
                   <div>Customer-ID:&nbsp;{customerEntry.customerId}</div>
                   <div>Customer-Name:&nbsp;{customerEntry.customerName}</div>
                   <div className="flex flex-row mt-3 mb-3">
-                    <div className="w-3/6 mr-3">
+                    <div className="w-2/6 mr-3">
+                      <AddCustomer />
+                    </div>
+                    <div className="w-2/6 mr-3">
                       <EditCustomer
                         currentCustomerId={customerEntry.customerId}
                       />
                     </div>
-                    <div className="w-3/6">
+                    <div className="w-2/6">
                       <DeleteCustomer
                         currentCustomerId={customerEntry.customerId}
                       />
