@@ -70,35 +70,29 @@ const DeleteProject = (props: Props) => {
         )}
       </div>
 
-      <div className="flex justify-center">
-        {modalIsOpen ? (
-          <div className="border border-black p-3 bg-blue-300">
-            <h1 className="text-center">Delete Project?</h1>
-            <div className="flex flex-row p-3">
-              <div className="w-3/6 mr-3">
-                <button
-                  type="button"
-                  className="w-28 h-7 bg-green-500 border-black border hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
-                  onClick={handleProjectDeletedYes}
-                >
-                  Yes
-                </button>
-              </div>
-              <div className="w-3/6">
-                <button
-                  type="button"
-                  className="w-28 h-7 bg-red-500 border-black border hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
-                  onClick={handleProjectDeletedNo}
-                >
-                  No
-                </button>
-              </div>
-            </div>
+      {modalIsOpen ? (
+        <div className="border border-black p-3 bg-blue-300">
+          <h1 className="text-center">Delete Project?</h1>
+          <div className="flex flex-row p-3">
+            <button
+              type="button"
+              className="w-3/6 mr-3 h-7 bg-green-500 border-black border hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+              onClick={handleProjectDeletedYes}
+            >
+              Yes
+            </button>
+            <button
+              type="button"
+              className="w-3/6 h-7 bg-red-500 border-black border hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+              onClick={handleProjectDeletedNo}
+            >
+              No
+            </button>
           </div>
-        ) : (
-          <div className="hidden">Modal is closed</div>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="hidden">Modal is closed</div>
+      )}
     </div>
   );
 };

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { projectEdited } from "../../redux/dataSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
+import { IconContext } from "react-icons";
+import { AiOutlineClose } from "react-icons/ai";
 
 interface Props {
   currentCustomerId: number;
@@ -39,6 +41,9 @@ const EditProject = (props: Props) => {
   const onEditProjectClicked = async () => {
     setModalIsOpen(true);
   };
+  const closeModal = async () => {
+    setModalIsOpen(false);
+  };
 
   // Project-Name
   const [projectName, setProjectName] = useState<string>(
@@ -72,7 +77,18 @@ const EditProject = (props: Props) => {
       <div>
         {modalIsOpen ? (
           <div className="border border-black p-3 bg-blue-300">
-            <h1 className="text-center">Edit Project?</h1>
+            <div className="flex flex-row justify-between">
+              <div className="invisible">Hidden</div>
+              <h1 className="text-center">Edit Project?</h1>
+              <div>
+                <IconContext.Provider value={{ size: "1.25em" }}>
+                  <AiOutlineClose
+                    className="cursor-pointer mr-3"
+                    onClick={closeModal}
+                  />
+                </IconContext.Provider>
+              </div>
+            </div>
             <div className="flex flex-col p-3">
               <div className="flex">
                 <div className="w-3/6">Project-Name:</div>
