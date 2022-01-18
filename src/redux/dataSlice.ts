@@ -14,6 +14,32 @@ export interface InitialCustomer {
     }[],
 }
 
+interface CustomerIdAndCustomers {
+  currentCustomerIdProps: number;
+  customers: 
+    {
+      customerId: number;
+      customerName: string;
+      projects: 
+        {
+          projectId: number;
+          projectName: string;
+          projectStatus: string
+        }[],
+    }[]
+}
+
+interface CustomerIdAndProjects {
+  currentCustomerIdProps: number;
+  currentProjectIdProps: number,
+  projects: 
+    {
+      projectId: number;
+      projectName: string;
+      projectStatus: string
+    }[],
+}
+
 const initialState: InitialCustomer = {
   customers: [
     {
@@ -67,39 +93,10 @@ const initialState: InitialCustomer = {
   ],
 };
 
-interface CustomerIdAndCustomers {
-  currentCustomerIdProps: number;
-  customers: 
-    {
-      customerId: number;
-      customerName: string;
-      projects: 
-        {
-          projectId: number;
-          projectName: string;
-          projectStatus: string
-        }[],
-    }[]
-}
-
-interface CustomerIdAndProjects {
-  currentCustomerIdProps: number;
-  currentProjectIdProps: number,
-  projects: 
-    {
-      projectId: number;
-      projectName: string;
-      projectStatus: string
-    }[],
-}
-
 export const dataSlice = createSlice({
   name: "data",
   initialState,
   reducers: {
-    currentCustomerIdUpdate(state, action) {
-      //   state.customers = action.payload;
-    },
     customerAdded(state, action) {
         state.customers.push(action.payload);
     },
@@ -112,9 +109,7 @@ export const dataSlice = createSlice({
       
       if (existingObject) {
         console.log("Customer found");
-        state.customers.find(
-          (obj) => obj.customerId === currentCustomerIdProps
-        ).customerName = customerName;
+        existingObject.customerName = customerName;
       } else {
         console.log("Can't find customer");
       }
@@ -151,15 +146,12 @@ export const dataSlice = createSlice({
           projectName: projectName,
           projectStatus: projectStatus,
         }
-        state.customers.find(
-          (obj) => obj.customerId === currentCustomerIdProps
-        ).projects.push(newProject)
+        existingObject.projects.push(newProject)
       } else {
         console.log("Can't find customer");
       }
   },
     projectEdited(state, action) {
-      // customer id, project id, neuer name bzw. auch neuer status
       const { currentCustomerIdProps, currentProjectIdProps, projectName, projectStatus } = action.payload;
 
       const existingObject = state.customers.find(
@@ -170,19 +162,8 @@ export const dataSlice = createSlice({
 
       if (existingObject) {
         console.log("Project found");
-        // Change Name
-        state.customers.find(
-          (obj) => obj.customerId === currentCustomerIdProps
-        ).projects.find(
-          (obj) => obj.projectId === currentProjectIdProps
-        ).projectName = projectName;
-        // Change Status
-        state.customers.find(
-          (obj) => obj.customerId === currentCustomerIdProps
-        ).projects.find(
-          (obj) => obj.projectId === currentProjectIdProps
-        ).projectStatus = projectStatus;
-
+        existingObject.projectName = projectName;
+        existingObject.projectStatus = projectStatus;
       } else {
         console.log("Can't find project");
       }
@@ -215,6 +196,6 @@ export const dataSlice = createSlice({
   extraReducers: {},
 });
 
-export const { currentCustomerIdUpdate, customerAdded, customerEdited, customerDeleted, projectAdded, projectEdited, projectDeleted } = dataSlice.actions;
+export const { customerAdded, customerEdited, customerDeleted, projectAdded, projectEdited, projectDeleted } = dataSlice.actions;
 
 export default dataSlice.reducer;
