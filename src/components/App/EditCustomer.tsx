@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { IconContext } from "react-icons";
 import { AiOutlineClose } from "react-icons/ai";
+import { GrEdit } from "react-icons/gr";
 
 interface Props {
   currentCustomerId: number;
@@ -52,19 +53,21 @@ const EditCustomer = (props: Props) => {
         ) : (
           <button
             type="button"
-            className="w-full rounded h-7 bg-blue-500 border-black border hover:bg-blue-300"
+            className="w-full h-7 flex items-center justify-center rounded bg-blue-500 border-black border hover:bg-blue-300"
             onClick={openModal}
           >
-            Edit Customer
+            <IconContext.Provider value={{ size: "1.25em" }}>
+              <GrEdit />
+            </IconContext.Provider>
           </button>
         )}
       </div>
       <div>
         {modalIsOpen ? (
           <div className="rounded border border-black p-3 bg-blue-500">
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row justify-between items-center">
               <div className="invisible">Hidden</div>
-              <h1 className="text-center">Edit Customer?</h1>
+              <h1 className="text-center">Edit Customer</h1>
               <div>
                 <IconContext.Provider value={{ size: "1.25em" }}>
                   <AiOutlineClose

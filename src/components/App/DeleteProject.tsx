@@ -74,9 +74,9 @@ const DeleteProject = (props: Props) => {
 
       {modalIsOpen ? (
         <div className="rounded border border-black p-3 bg-red-500">
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-row justify-between items-center">
             <div className="invisible">Hidden</div>
-            <h1 className="text-center">Delete Project?</h1>
+            <h1 className="text-center">Delete Project</h1>
             <div>
               <IconContext.Provider value={{ size: "1.25em" }}>
                 <AiOutlineClose

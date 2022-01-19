@@ -3,7 +3,7 @@ import { customerAdded } from "../../redux/dataSlice";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { IconContext } from "react-icons";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlinePlusCircle } from "react-icons/ai";
 
 const AddCustomer = () => {
   const dispatch = useAppDispatch();
@@ -54,22 +54,21 @@ const AddCustomer = () => {
         {modalIsOpen ? (
           <div className="hidden"></div>
         ) : (
-          <button
-            type="button"
-            className="w-full h-7 rounded bg-green-500 border-black border hover:bg-green-300 "
-            onClick={openModal}
-          >
-            Add Customer
-          </button>
+          <IconContext.Provider value={{ size: "2em" }}>
+            <AiOutlinePlusCircle
+              className="cursor-pointer"
+              onClick={openModal}
+            />
+          </IconContext.Provider>
         )}
       </div>
 
       <div>
         {modalIsOpen ? (
           <div className="rounded border border-black p-3 bg-green-500">
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row justify-between items-center">
               <div className="invisible">Hidden</div>
-              <h1 className="text-center">Add Customer?</h1>
+              <h1 className="text-center">Add Customer</h1>
               <div>
                 <IconContext.Provider value={{ size: "1.25em" }}>
                   <AiOutlineClose

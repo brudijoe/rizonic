@@ -27,28 +27,38 @@ const Customer = () => {
     <div>
       <div className="bg-red-400 rounded p-3 border border-black">
         {dropDownCustomers ? (
-          <div className="flex flex-row items-center">
-            <div>
-              <IconContext.Provider value={{ size: "3em" }}>
-                <AiOutlineUpCircle
-                  className="mr-3 pl-3 cursor-pointer"
-                  onClick={showDropDownCustomers}
-                />
-              </IconContext.Provider>
+          <div className="flex flex-row items-center justify-between">
+            <div className="flex flex-row ml-3 items-center">
+              <div>
+                <IconContext.Provider value={{ size: "2em" }}>
+                  <AiOutlineUpCircle
+                    className="cursor-pointer"
+                    onClick={showDropDownCustomers}
+                  />
+                </IconContext.Provider>
+              </div>
+              <h1 className="ml-3 text-center text-2xl font-bold">Customers</h1>
             </div>
-            <h1 className="text-center text-2xl font-bold">Customers</h1>
+            <div className="mr-3">
+              <AddCustomer />
+            </div>
           </div>
         ) : (
-          <div className="flex flex-row items-center">
-            <div>
-              <IconContext.Provider value={{ size: "3em" }}>
-                <AiOutlineDownCircle
-                  className="mr-3 pl-3 cursor-pointer"
-                  onClick={showDropDownCustomers}
-                />
-              </IconContext.Provider>
+          <div className="flex flex-row items-center justify-between">
+            <div className="flex flex-row ml-3 items-center">
+              <div>
+                <IconContext.Provider value={{ size: "2em" }}>
+                  <AiOutlineDownCircle
+                    className="mr-3 cursor-pointer"
+                    onClick={showDropDownCustomers}
+                  />
+                </IconContext.Provider>
+              </div>
+              <h1 className="text-center text-2xl font-bold">Customers</h1>
             </div>
-            <h1 className="text-center text-2xl font-bold">Customers</h1>
+            <div className="mr-3">
+              <AddCustomer />
+            </div>
           </div>
         )}
         {dropDownCustomers &&
@@ -59,15 +69,12 @@ const Customer = () => {
                 <div>Customer-ID:&nbsp;{customerEntry.customerId}</div>
                 <div>Customer-Name:&nbsp;{customerEntry.customerName}</div>
                 <div className="flex flex-row mt-3 mb-3">
-                  <div className="w-2/6 mr-3">
-                    <AddCustomer />
-                  </div>
-                  <div className="w-2/6 mr-3">
+                  <div className="w-3/6 mr-3">
                     <EditCustomer
                       currentCustomerId={customerEntry.customerId}
                     />
                   </div>
-                  <div className="w-2/6">
+                  <div className="w-3/6">
                     <DeleteCustomer
                       currentCustomerId={customerEntry.customerId}
                     />

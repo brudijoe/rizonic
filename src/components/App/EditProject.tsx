@@ -75,9 +75,9 @@ const EditProject = (props: Props) => {
       <div>
         {modalIsOpen ? (
           <div className="p-3 rounded border border-black bg-blue-500">
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row justify-between items-center">
               <div className="invisible">Hidden</div>
-              <h1 className="text-center">Edit Project?</h1>
+              <h1 className="text-center">Edit Project</h1>
               <div>
                 <IconContext.Provider value={{ size: "1.25em" }}>
                   <AiOutlineClose

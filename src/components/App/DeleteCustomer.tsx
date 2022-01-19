@@ -4,6 +4,7 @@ import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { IconContext } from "react-icons";
 import { AiOutlineClose } from "react-icons/ai";
+import { MdDelete } from "react-icons/md";
 
 interface Props {
   currentCustomerId: number;
@@ -46,11 +47,13 @@ const DeleteCustomer = (props: Props) => {
         ) : (
           <button
             type="button"
-            className="w-full rounded h-7 bg-red-500 border-black border hover:bg-red-300"
+            className="w-full h-7 flex items-center justify-center rounded bg-red-500 border-black border hover:bg-red-300"
             onClick={openModal}
             data-test-id="CustomersDeleteButton"
           >
-            Delete Customer
+            <IconContext.Provider value={{ size: "1.25em" }}>
+              <MdDelete />
+            </IconContext.Provider>
           </button>
         )}
       </div>
@@ -58,9 +61,9 @@ const DeleteCustomer = (props: Props) => {
       <div>
         {modalIsOpen ? (
           <div className="rounded border border-black p-3 bg-red-500">
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row justify-between items-center">
               <div className="invisible">Hidden</div>
-              <h1 className="text-center">Delete Customer?</h1>
+              <h1 className="text-center">Delete Customer</h1>
               <div>
                 <IconContext.Provider value={{ size: "1.25em" }}>
                   <AiOutlineClose
