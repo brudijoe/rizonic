@@ -3,11 +3,10 @@ import { projectAdded } from "../../redux/dataSlice";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { IconContext } from "react-icons";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlinePlusCircle } from "react-icons/ai";
 
 interface Props {
   currentCustomerId: number;
-  currentProjectId: number;
 }
 
 const AddProject = (props: Props) => {
@@ -71,13 +70,12 @@ const AddProject = (props: Props) => {
         {modalIsOpen ? (
           <div className="hidden"></div>
         ) : (
-          <button
-            type="button"
-            className="w-full rounded h-7 bg-green-500 border-black border hover:bg-green-300"
-            onClick={openModal}
-          >
-            Add Project
-          </button>
+          <IconContext.Provider value={{ size: "2em" }}>
+            <AiOutlinePlusCircle
+              className="cursor-pointer"
+              onClick={openModal}
+            />
+          </IconContext.Provider>
         )}
       </div>
 

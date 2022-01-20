@@ -4,6 +4,7 @@ import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { IconContext } from "react-icons";
 import { AiOutlineClose } from "react-icons/ai";
+import { MdDelete } from "react-icons/md";
 
 interface Props {
   currentCustomerId: number;
@@ -64,10 +65,12 @@ const DeleteProject = (props: Props) => {
         ) : (
           <button
             type="button"
-            className="w-full h-7 rounded bg-red-500 border-black border hover:bg-red-300 "
+            className="w-full h-7 flex items-center justify-center rounded bg-red-500 border-black border hover:bg-red-300 "
             onClick={openModal}
           >
-            Delete Project
+            <IconContext.Provider value={{ size: "1.25em" }}>
+              <MdDelete />
+            </IconContext.Provider>
           </button>
         )}
       </div>

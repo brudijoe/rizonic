@@ -27,8 +27,8 @@ const Customer = () => {
     <div>
       <div className="bg-red-400 rounded p-3 border border-black">
         {dropDownCustomers ? (
-          <div className="flex flex-row items-center justify-between">
-            <div className="flex flex-row ml-3 items-center">
+          <div className="flex flex-row ml-3 mr-3 items-center justify-between">
+            <div className="flex flex-row items-center">
               <div>
                 <IconContext.Provider value={{ size: "2em" }}>
                   <AiOutlineUpCircle
@@ -39,13 +39,11 @@ const Customer = () => {
               </div>
               <h1 className="ml-3 text-center text-2xl font-bold">Customers</h1>
             </div>
-            <div className="mr-3">
-              <AddCustomer />
-            </div>
+            <AddCustomer />
           </div>
         ) : (
-          <div className="flex flex-row items-center justify-between">
-            <div className="flex flex-row ml-3 items-center">
+          <div className="flex flex-row ml-3 mr-3 items-center justify-between">
+            <div className="flex flex-row items-center">
               <div>
                 <IconContext.Provider value={{ size: "2em" }}>
                   <AiOutlineDownCircle
@@ -56,15 +54,13 @@ const Customer = () => {
               </div>
               <h1 className="text-center text-2xl font-bold">Customers</h1>
             </div>
-            <div className="mr-3">
-              <AddCustomer />
-            </div>
+            <AddCustomer />
           </div>
         )}
         {dropDownCustomers &&
           customers.map((customerEntry) => (
             <div className="flex" key={customerEntry.customerId}>
-              <div className="w-full bg-gray-300 rounded mr-3 border border-black m-3 p-3">
+              <div className="w-full bg-gray-500 rounded border border-black p-3 mt-3">
                 <h1 className="font-bold">Customer-Information</h1>
                 <div>Customer-ID:&nbsp;{customerEntry.customerId}</div>
                 <div>Customer-Name:&nbsp;{customerEntry.customerName}</div>
