@@ -4,9 +4,9 @@ import { AiOutlineDownCircle, AiOutlineUpCircle } from "react-icons/ai";
 import AddCustomer from "./AddCustomer";
 import DeleteCustomer from "./DeleteCustomer";
 import EditCustomer from "./EditCustomer";
-import Project from "./Project";
+import Project from "../Project/Project";
 // Redux
-import { useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from "../../../redux/hooks";
 
 const Customer = () => {
   const customersRedux = useAppSelector((state) => state.data.customers);

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { projectEdited } from "../../redux/dataSlice";
-import { useAppDispatch } from "../../redux/hooks";
+import { projectEdited } from "../../../redux/dataSlice";
+import { useAppDispatch } from "../../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { IconContext } from "react-icons";
 import { AiOutlineClose } from "react-icons/ai";

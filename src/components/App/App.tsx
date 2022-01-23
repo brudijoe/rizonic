@@ -1,5 +1,5 @@
 import React from "react";
-import Customer from "./Customer";
+import Customer from "./Customer/Customer";
 
 const App = () => {
   return (
