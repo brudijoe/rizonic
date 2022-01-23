@@ -28,40 +28,18 @@ const DeleteCustomer = (props: Props) => {
         console.error("Failed to delete customer: ", err);
       }
     }
-    setModalIsOpen(false);
-  };
-
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
-  const openModal = () => {
-    setModalIsOpen(true);
+    setModal(!modal);
   };
 
   const [modal, setModal] = useState(false);
+  const handleModalClicked = () => {
+    setModal(!modal);
+  };
 
   return (
     <div>
       <div>
-        {modalIsOpen ? (
-          <div className="hidden"></div>
-        ) : (
-          <button
-            type="button"
-            className="w-full h-7 flex items-center justify-center rounded bg-red-500 border-black border hover:bg-red-300"
-            onClick={openModal}
-            data-test-id="CustomersDeleteButton"
-          >
-            <IconContext.Provider value={{ size: "1.25em" }}>
-              <MdDelete />
-            </IconContext.Provider>
-          </button>
-        )}
-      </div>
-
-      <div>
-        {modalIsOpen ? (
+        {modal ? (
           <div className="rounded border border-black p-3 bg-red-500">
             <div className="flex flex-row justify-between items-center">
               <div className="invisible">Hidden</div>
@@ -70,7 +48,7 @@ const DeleteCustomer = (props: Props) => {
                 <IconContext.Provider value={{ size: "1.25em" }}>
                   <AiOutlineClose
                     className="cursor-pointer mr-3"
-                    onClick={closeModal}
+                    onClick={handleModalClicked}
                   />
                 </IconContext.Provider>
               </div>
@@ -86,7 +64,16 @@ const DeleteCustomer = (props: Props) => {
             </div>
           </div>
         ) : (
-          <div className="hidden">Modal is closed</div>
+          <button
+            type="button"
+            className="w-full h-7 flex items-center justify-center rounded bg-red-500 border-black border hover:bg-red-300"
+            onClick={handleModalClicked}
+            data-test-id="CustomersDeleteButton"
+          >
+            <IconContext.Provider value={{ size: "1.25em" }}>
+              <MdDelete />
+            </IconContext.Provider>
+          </button>
         )}
       </div>
     </div>

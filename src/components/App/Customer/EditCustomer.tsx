@@ -29,41 +29,23 @@ const EditCustomer = (props: Props) => {
         console.error("Failed to edit customer: ", err);
       }
       setCustomerName("");
-      setModalIsOpen(false);
+      setModal(!modal);
     }
-  };
-
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
-  const closeModal = () => {
-    setModalIsOpen(false);
   };
 
   const [customerName, setCustomerName] = useState<string>("");
   const handleCustomerNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
     setCustomerName(e.currentTarget.value);
 
+  const [modal, setModal] = useState(false);
+  const handleModalClicked = () => {
+    setModal(!modal);
+  };
+
   return (
-    <div className="">
+    <div className="mr-3">
       <div>
-        {modalIsOpen ? (
-          <div className="hidden"></div>
-        ) : (
-          <button
-            type="button"
-            className="w-full h-7 flex items-center justify-center rounded bg-blue-500 border-black border hover:bg-blue-300"
-            onClick={openModal}
-          >
-            <IconContext.Provider value={{ size: "1.25em" }}>
-              <GrEdit />
-            </IconContext.Provider>
-          </button>
-        )}
-      </div>
-      <div>
-        {modalIsOpen ? (
+        {modal ? (
           <div className="rounded border border-black p-3 bg-blue-500">
             <div className="flex flex-row justify-between items-center">
               <div className="invisible">Hidden</div>
@@ -72,7 +54,7 @@ const EditCustomer = (props: Props) => {
                 <IconContext.Provider value={{ size: "1.25em" }}>
                   <AiOutlineClose
                     className="cursor-pointer mr-3"
-                    onClick={closeModal}
+                    onClick={handleModalClicked}
                   />
                 </IconContext.Provider>
               </div>
@@ -97,7 +79,15 @@ const EditCustomer = (props: Props) => {
             </div>
           </div>
         ) : (
-          <div className="hidden">Modal is closed</div>
+          <button
+            type="button"
+            className="w-full h-7 flex items-center justify-center rounded bg-blue-500 border-black border hover:bg-blue-300"
+            onClick={handleModalClicked}
+          >
+            <IconContext.Provider value={{ size: "1.25em" }}>
+              <GrEdit />
+            </IconContext.Provider>
+          </button>
         )}
       </div>
     </div>

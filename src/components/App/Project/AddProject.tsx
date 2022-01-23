@@ -50,12 +50,9 @@ const AddProject = (props: Props) => {
     }
   };
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
-  const closeModal = () => {
-    setModalIsOpen(false);
+  const [modal, setModal] = useState(false);
+  const handleModalClicked = () => {
+    setModal(!modal);
   };
 
   const projectStatus = ["", "In progress", "On hold", "Done"];
@@ -67,78 +64,68 @@ const AddProject = (props: Props) => {
 
   return (
     <div className="">
-      <div>
-        {modalIsOpen ? (
-          <div className="hidden"></div>
-        ) : (
-          <IconContext.Provider value={{ size: "2em" }}>
-            <AiOutlinePlusCircle
-              className="cursor-pointer"
-              onClick={openModal}
-            />
-          </IconContext.Provider>
-        )}
-      </div>
-
-      <div>
-        {modalIsOpen ? (
-          <div className="rounded border border-black p-3 bg-green-500">
-            <div className="flex flex-row justify-between items-center">
-              <div className="invisible">Hidden</div>
-              <h1 className="text-center">Add Project</h1>
-              <div>
-                <IconContext.Provider value={{ size: "1.25em" }}>
-                  <AiOutlineClose
-                    className="cursor-pointer mr-3"
-                    onClick={closeModal}
-                  />
-                </IconContext.Provider>
-              </div>
-            </div>
-            <div className="flex flex-col p-3">
-              <div className="flex">
-                <div className="w-3/6">Project-Name:</div>
-                <div className="w-3/6">
-                  <input
-                    maxLength={100}
-                    className="w-full h-7 mb-3 p-3 rounded border border-black box-border resize-y focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
-                    value={projectName}
-                    onChange={onProjectNameChanged}
-                  />
-                </div>
-              </div>
-              <div className="flex mb-3">
-                <div className="w-3/6">Project-Status:</div>
-                <div className="w-3/6">
-                  <select
-                    className="w-full h-7 rounded"
-                    name="projectstatus"
-                    id="projectstatus"
-                    onChange={handleNewProjectStatus}
-                  >
-                    <option value={projectStatus[0]}>{projectStatus[0]}</option>
-                    <option value={projectStatus[1]}>{projectStatus[1]}</option>
-                    <option value={projectStatus[2]}>{projectStatus[2]}</option>
-                    <option value={projectStatus[3]}>{projectStatus[3]}</option>
-                  </select>
-                </div>
-              </div>
-              <div className="flex">
-                <div className="w-3/6 invisible"></div>
-                <button
-                  type="button"
-                  className="w-3/6 h-7 rounded bg-green-600 border-black border hover:bg-green-300"
-                  onClick={onAddProjectClicked}
-                >
-                  Add Project
-                </button>
-              </div>
+      {modal ? (
+        <div className="rounded border border-black p-3 bg-green-500">
+          <div className="flex flex-row justify-between items-center">
+            <div className="invisible">Hidden</div>
+            <h1 className="text-center">Add Project</h1>
+            <div>
+              <IconContext.Provider value={{ size: "1.25em" }}>
+                <AiOutlineClose
+                  className="cursor-pointer mr-3"
+                  onClick={handleModalClicked}
+                />
+              </IconContext.Provider>
             </div>
           </div>
-        ) : (
-          <div className="hidden">Modal is closed</div>
-        )}
-      </div>
+          <div className="flex flex-col p-3">
+            <div className="flex">
+              <div className="w-3/6">Project-Name:</div>
+              <div className="w-3/6">
+                <input
+                  maxLength={100}
+                  className="w-full h-7 mb-3 p-3 rounded border border-black box-border resize-y focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                  value={projectName}
+                  onChange={onProjectNameChanged}
+                />
+              </div>
+            </div>
+            <div className="flex mb-3">
+              <div className="w-3/6">Project-Status:</div>
+              <div className="w-3/6">
+                <select
+                  className="w-full h-7 rounded"
+                  name="projectstatus"
+                  id="projectstatus"
+                  onChange={handleNewProjectStatus}
+                >
+                  <option value={projectStatus[0]}>{projectStatus[0]}</option>
+                  <option value={projectStatus[1]}>{projectStatus[1]}</option>
+                  <option value={projectStatus[2]}>{projectStatus[2]}</option>
+                  <option value={projectStatus[3]}>{projectStatus[3]}</option>
+                </select>
+              </div>
+            </div>
+            <div className="flex">
+              <div className="w-3/6 invisible"></div>
+              <button
+                type="button"
+                className="w-3/6 h-7 rounded bg-green-600 border-black border hover:bg-green-300"
+                onClick={onAddProjectClicked}
+              >
+                Add Project
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <IconContext.Provider value={{ size: "2em" }}>
+          <AiOutlinePlusCircle
+            className="cursor-pointer"
+            onClick={handleModalClicked}
+          />
+        </IconContext.Provider>
+      )}
     </div>
   );
 };

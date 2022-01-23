@@ -40,31 +40,15 @@ const AddCustomer = () => {
     }
   };
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
-  const closeModal = () => {
-    setModalIsOpen(false);
+  const [modal, setModal] = useState(false);
+  const handleModalClicked = () => {
+    setModal(!modal);
   };
 
   return (
     <div className="">
       <div>
-        {modalIsOpen ? (
-          <div className="hidden"></div>
-        ) : (
-          <IconContext.Provider value={{ size: "2em" }}>
-            <AiOutlinePlusCircle
-              className="cursor-pointer"
-              onClick={openModal}
-            />
-          </IconContext.Provider>
-        )}
-      </div>
-
-      <div>
-        {modalIsOpen ? (
+        {modal ? (
           <div className="rounded border border-black p-3 bg-green-500">
             <div className="flex flex-row justify-between items-center">
               <div className="invisible">Hidden</div>
@@ -73,7 +57,7 @@ const AddCustomer = () => {
                 <IconContext.Provider value={{ size: "1.25em" }}>
                   <AiOutlineClose
                     className="cursor-pointer mr-3"
-                    onClick={closeModal}
+                    onClick={handleModalClicked}
                   />
                 </IconContext.Provider>
               </div>
@@ -99,7 +83,12 @@ const AddCustomer = () => {
             </div>
           </div>
         ) : (
-          <div className="hidden">Modal is closed</div>
+          <IconContext.Provider value={{ size: "2em" }}>
+            <AiOutlinePlusCircle
+              className="cursor-pointer"
+              onClick={handleModalClicked}
+            />
+          </IconContext.Provider>
         )}
       </div>
     </div>

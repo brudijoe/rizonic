@@ -33,18 +33,14 @@ const EditProject = (props: Props) => {
       } catch (err) {
         console.error("Failed to edit project: ", err);
       }
-      setModalIsOpen(false);
+      setModal(!modal);
     }
   };
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const openModal = () => {
-    setModalIsOpen(true);
+  const [modal, setModal] = useState(false);
+  const handleModalClicked = () => {
+    setModal(!modal);
   };
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
-
   const [projectName, setProjectName] = useState<string>(
     props.currentProjectName
   );
@@ -61,22 +57,7 @@ const EditProject = (props: Props) => {
   return (
     <div>
       <div>
-        {modalIsOpen ? (
-          <div className="hidden"></div>
-        ) : (
-          <button
-            type="button"
-            className="w-full h-7 flex items-center justify-center rounded border border-black bg-blue-500 hover:bg-blue-300 "
-            onClick={openModal}
-          >
-            <IconContext.Provider value={{ size: "1.25em" }}>
-              <GrEdit />
-            </IconContext.Provider>
-          </button>
-        )}
-      </div>
-      <div>
-        {modalIsOpen ? (
+        {modal ? (
           <div className="p-3 rounded border border-black bg-blue-500">
             <div className="flex flex-row justify-between items-center">
               <div className="invisible">Hidden</div>
@@ -85,7 +66,7 @@ const EditProject = (props: Props) => {
                 <IconContext.Provider value={{ size: "1.25em" }}>
                   <AiOutlineClose
                     className="cursor-pointer mr-3"
-                    onClick={closeModal}
+                    onClick={handleModalClicked}
                   />
                 </IconContext.Provider>
               </div>
@@ -131,7 +112,15 @@ const EditProject = (props: Props) => {
             </div>
           </div>
         ) : (
-          <div className="hidden">Modal is closed</div>
+          <button
+            type="button"
+            className="w-full h-7 flex items-center justify-center rounded border border-black bg-blue-500 hover:bg-blue-300 "
+            onClick={handleModalClicked}
+          >
+            <IconContext.Provider value={{ size: "1.25em" }}>
+              <GrEdit />
+            </IconContext.Provider>
+          </button>
         )}
       </div>
     </div>

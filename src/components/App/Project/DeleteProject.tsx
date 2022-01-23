@@ -46,27 +46,46 @@ const DeleteProject = (props: Props) => {
         console.error("Failed to delete project: ", err);
       }
     }
-    setModalIsOpen(false);
+    setModal(!modal);
   };
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
-  const openModal = () => {
-    setModalIsOpen(true);
+  const [modal, setModal] = useState(false);
+  const handleModalClicked = () => {
+    setModal(!modal);
   };
 
   return (
     <div>
       <div>
-        {modalIsOpen ? (
-          <div className="hidden"></div>
+        {modal ? (
+          <div className="rounded border border-black p-3 bg-red-500">
+            <div className="flex flex-row justify-between items-center">
+              <div className="invisible">Hidden</div>
+              <h1 className="text-center">Delete Project</h1>
+              <div>
+                <IconContext.Provider value={{ size: "1.25em" }}>
+                  <AiOutlineClose
+                    className="cursor-pointer mr-3"
+                    onClick={handleModalClicked}
+                  />
+                </IconContext.Provider>
+              </div>
+            </div>
+            <div className="flex flex-row p-3">
+              <button
+                type="button"
+                className="w-full h-7 rounded bg-red-600 border-black border hover:bg-red-300 "
+                onClick={handleProjectDeletedYes}
+              >
+                Yes
+              </button>
+            </div>
+          </div>
         ) : (
           <button
             type="button"
             className="w-full h-7 flex items-center justify-center rounded bg-red-500 border-black border hover:bg-red-300 "
-            onClick={openModal}
+            onClick={handleModalClicked}
           >
             <IconContext.Provider value={{ size: "1.25em" }}>
               <MdDelete />
@@ -74,34 +93,6 @@ const DeleteProject = (props: Props) => {
           </button>
         )}
       </div>
-
-      {modalIsOpen ? (
-        <div className="rounded border border-black p-3 bg-red-500">
-          <div className="flex flex-row justify-between items-center">
-            <div className="invisible">Hidden</div>
-            <h1 className="text-center">Delete Project</h1>
-            <div>
-              <IconContext.Provider value={{ size: "1.25em" }}>
-                <AiOutlineClose
-                  className="cursor-pointer mr-3"
-                  onClick={closeModal}
-                />
-              </IconContext.Provider>
-            </div>
-          </div>
-          <div className="flex flex-row p-3">
-            <button
-              type="button"
-              className="w-full h-7 rounded bg-red-600 border-black border hover:bg-red-300 "
-              onClick={handleProjectDeletedYes}
-            >
-              Yes
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div className="hidden">Modal is closed</div>
-      )}
     </div>
   );
 };
