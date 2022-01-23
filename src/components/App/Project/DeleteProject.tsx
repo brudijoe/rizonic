@@ -50,10 +50,10 @@ const DeleteProject = (props: Props) => {
   };
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const closeModal = async () => {
+  const closeModal = () => {
     setModalIsOpen(false);
   };
-  const openModal = async () => {
+  const openModal = () => {
     setModalIsOpen(true);
   };
 

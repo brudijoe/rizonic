@@ -38,10 +38,10 @@ const EditProject = (props: Props) => {
   };
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const openModal = async () => {
+  const openModal = () => {
     setModalIsOpen(true);
   };
-  const closeModal = async () => {
+  const closeModal = () => {
     setModalIsOpen(false);
   };
 

@@ -65,16 +65,10 @@ const Customer = () => {
                 <div>Customer-ID:&nbsp;{customerEntry.customerId}</div>
                 <div>Customer-Name:&nbsp;{customerEntry.customerName}</div>
                 <div className="flex flex-row mt-3 mb-3">
-                  <div className="w-3/6 mr-3">
-                    <EditCustomer
-                      currentCustomerId={customerEntry.customerId}
-                    />
-                  </div>
-                  <div className="w-3/6">
-                    <DeleteCustomer
-                      currentCustomerId={customerEntry.customerId}
-                    />
-                  </div>
+                  <EditCustomer currentCustomerId={customerEntry.customerId} />
+                  <DeleteCustomer
+                    currentCustomerId={customerEntry.customerId}
+                  />
                 </div>
                 <div className="w-full rounded border border-black p-3 bg-indigo-300">
                   <Project

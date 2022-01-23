@@ -40,7 +40,7 @@ const Project = (props: Props) => {
             </div>
             <h1 className="ml-3 text-center font-bold text-xl">Projects</h1>
           </div>
-          <AddProject currentCustomerId={props.currentCustomerId} />
+          {/* <AddProject currentCustomerId={props.currentCustomerId} /> */}
         </div>
       ) : (
         <div className="flex flex-row ml-3 mr-3 items-center justify-between">
@@ -55,7 +55,10 @@ const Project = (props: Props) => {
             </div>
             <h1 className="text-center font-bold text-xl">Projects</h1>
           </div>
-          <AddProject currentCustomerId={props.currentCustomerId} />
+          <AddProject
+            customerEntry={props.customerEntry}
+            currentCustomerId={props.currentCustomerId}
+          />
         </div>
       )}
 

@@ -1,12 +1,21 @@
 import { useState } from "react";
 import { projectAdded } from "../../../redux/dataSlice";
-import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch } from "../../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { IconContext } from "react-icons";
 import { AiOutlineClose, AiOutlinePlusCircle } from "react-icons/ai";
 
 interface Props {
   currentCustomerId: number;
+  customerEntry: {
+    customerId: number;
+    customerName: string;
+    projects: {
+      projectId: number;
+      projectName: string;
+      projectStatus: string;
+    }[];
+  };
 }
 
 const AddProject = (props: Props) => {
@@ -17,18 +26,10 @@ const AddProject = (props: Props) => {
     setProjectName(e.currentTarget.value);
 
   const currentCustomerIdProps = props.currentCustomerId;
-  const projects = useAppSelector(
-    (state) =>
-      state.data.customers.find(
-        (obj) => obj.customerId === currentCustomerIdProps
-      ).projects
-  );
-  const lastProjectId = useAppSelector(
-    (state) =>
-      state.data.customers.find(
-        (obj) => obj.customerId === currentCustomerIdProps
-      ).projects[projects.length - 1].projectId
-  );
+
+  const projects = props.customerEntry.projects;
+  const lastProjectId =
+    props.customerEntry.projects[projects.length - 1].projectId;
 
   const onAddProjectClicked = async () => {
     if (projectName.length > 1) {
