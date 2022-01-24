@@ -47,50 +47,48 @@ const AddCustomer = () => {
 
   return (
     <div className="">
-      <div>
-        {modal ? (
-          <div className="rounded border border-black p-3 bg-green-500">
-            <div className="flex flex-row justify-between items-center">
-              <div className="invisible pr-3">&nbsp;</div>
-              <h1 className="text-center">Add Customer</h1>
-              <div className="pl-3">
-                <IconContext.Provider value={{ size: "1.25em" }}>
-                  <AiOutlineClose
-                    className="cursor-pointer"
-                    onClick={handleModalClicked}
-                  />
-                </IconContext.Provider>
-              </div>
-            </div>
-            <div className="flex flex-row mt-3">
-              <div className="w-3/6">Customer-Name:</div>
-              <div className="w-3/6">
-                <input
-                  className="w-full h-7 mb-3 p-3 rounded border border-black box-border resize-y focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
-                  onChange={onCustomerNameChanged}
-                  value={customerName}
-                  minLength={2}
-                  maxLength={100}
+      {modal && (
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded border border-black p-3 bg-green-500">
+          <div className="flex flex-row justify-between items-center">
+            <div className="invisible pr-3">&nbsp;</div>
+            <h1 className="text-center">Add Customer</h1>
+            <div className="pl-3">
+              <IconContext.Provider value={{ size: "1.25em" }}>
+                <AiOutlineClose
+                  className="cursor-pointer"
+                  onClick={handleModalClicked}
                 />
-                <button
-                  type="button"
-                  className="w-full h-7 rounded bg-green-600 border-black border hover:bg-green-300 "
-                  onClick={onAddCustomerClicked}
-                >
-                  Add Customer
-                </button>
-              </div>
+              </IconContext.Provider>
             </div>
           </div>
-        ) : (
-          <IconContext.Provider value={{ size: "2em" }}>
-            <AiOutlinePlusCircle
-              className="cursor-pointer"
-              onClick={handleModalClicked}
-            />
-          </IconContext.Provider>
-        )}
-      </div>
+          <div className="flex flex-row mt-3">
+            <div className="w-3/6">Customer-Name:</div>
+            <div className="w-3/6">
+              <input
+                className="w-full h-7 mb-3 p-3 rounded border border-black box-border resize-y focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                onChange={onCustomerNameChanged}
+                value={customerName}
+                minLength={2}
+                maxLength={100}
+                autoFocus
+              />
+              <button
+                type="button"
+                className="w-full h-7 rounded bg-green-600 border-black border hover:bg-green-300 "
+                onClick={onAddCustomerClicked}
+              >
+                Add Customer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      <IconContext.Provider value={{ size: "2em" }}>
+        <AiOutlinePlusCircle
+          className="cursor-pointer"
+          onClick={handleModalClicked}
+        />
+      </IconContext.Provider>
     </div>
   );
 };
