@@ -40,7 +40,10 @@ const Project = (props: Props) => {
             </div>
             <h1 className="ml-3 text-center font-bold text-xl">Projects</h1>
           </div>
-          {/* <AddProject currentCustomerId={props.currentCustomerId} /> */}
+          <AddProject
+            customerEntry={props.customerEntry}
+            currentCustomerId={props.currentCustomerId}
+          />
         </div>
       ) : (
         <div className="flex flex-row ml-3 mr-3 items-center justify-between">
@@ -74,19 +77,15 @@ const Project = (props: Props) => {
               <div>Project-Name:&nbsp;{projectEntry.projectName}</div>
               <div>Project-Status:&nbsp;{projectEntry.projectStatus}</div>
               <div className="flex flex-row mt-3">
-                <div className="w-3/6 mr-3">
-                  <EditProject
-                    currentCustomerId={props.currentCustomerId}
-                    currentProjectId={projectEntry.projectId}
-                    currentProjectName={projectEntry.projectName}
-                  />
-                </div>
-                <div className="w-3/6">
-                  <DeleteProject
-                    currentCustomerId={props.currentCustomerId}
-                    currentProjectId={projectEntry.projectId}
-                  />
-                </div>
+                <EditProject
+                  currentCustomerId={props.currentCustomerId}
+                  currentProjectId={projectEntry.projectId}
+                  currentProjectName={projectEntry.projectName}
+                />
+                <DeleteProject
+                  currentCustomerId={props.currentCustomerId}
+                  currentProjectId={projectEntry.projectId}
+                />
               </div>
             </div>
           </div>

@@ -67,18 +67,18 @@ const AddProject = (props: Props) => {
       {modal ? (
         <div className="rounded border border-black p-3 bg-green-500">
           <div className="flex flex-row justify-between items-center">
-            <div className="invisible">Hidden</div>
+            <div className="invisible pr-3">&nbsp;</div>
             <h1 className="text-center">Add Project</h1>
-            <div>
+            <div className="pl-3">
               <IconContext.Provider value={{ size: "1.25em" }}>
                 <AiOutlineClose
-                  className="cursor-pointer mr-3"
+                  className="cursor-pointer"
                   onClick={handleModalClicked}
                 />
               </IconContext.Provider>
             </div>
           </div>
-          <div className="flex flex-col p-3">
+          <div className="flex flex-col mt-3">
             <div className="flex">
               <div className="w-3/6">Project-Name:</div>
               <div className="w-3/6">

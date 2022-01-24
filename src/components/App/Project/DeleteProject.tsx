@@ -60,18 +60,18 @@ const DeleteProject = (props: Props) => {
         {modal ? (
           <div className="rounded border border-black p-3 bg-red-500">
             <div className="flex flex-row justify-between items-center">
-              <div className="invisible">Hidden</div>
+              <div className="invisible pr-3">&nbsp;</div>
               <h1 className="text-center">Delete Project</h1>
-              <div>
+              <div className="pl-3">
                 <IconContext.Provider value={{ size: "1.25em" }}>
                   <AiOutlineClose
-                    className="cursor-pointer mr-3"
+                    className="cursor-pointer"
                     onClick={handleModalClicked}
                   />
                 </IconContext.Provider>
               </div>
             </div>
-            <div className="flex flex-row p-3">
+            <div className="flex flex-row mt-3">
               <button
                 type="button"
                 className="w-full h-7 rounded bg-red-600 border-black border hover:bg-red-300 "
@@ -84,7 +84,7 @@ const DeleteProject = (props: Props) => {
         ) : (
           <button
             type="button"
-            className="w-full h-7 flex items-center justify-center rounded bg-red-500 border-black border hover:bg-red-300 "
+            className="w-full pl-3 pr-3 h-7 flex items-center justify-center rounded bg-red-500 border-black border hover:bg-red-300 "
             onClick={handleModalClicked}
           >
             <IconContext.Provider value={{ size: "1.25em" }}>
