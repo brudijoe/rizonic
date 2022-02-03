@@ -26,7 +26,7 @@ const Project = (props: Props) => {
   };
 
   return (
-    <div className="">
+    <div className="w-full rounded border border-black p-3 bg-gray-200">
       {dropDownProjects ? (
         <div className="flex flex-row ml-3 mr-3 items-center justify-between">
           <div className="flex flex-row items-center">
@@ -69,7 +69,7 @@ const Project = (props: Props) => {
         props.customerEntry.projects.map((projectEntry) => (
           <div
             key={projectEntry.projectId}
-            className="w-full rounded border border-black p-3 mt-3 bg-green-600"
+            className="w-full rounded border border-black p-3 mt-3 bg-gray-400"
           >
             <div>
               <h1 className="font-bold">Project-Information</h1>

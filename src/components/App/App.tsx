@@ -3,7 +3,7 @@ import Customer from "./Customer/Customer";
 
 const App = () => {
   return (
-    <div className="h-full bg-gray-400 p-3">
+    <div className="h-full min-h-screen bg-gray-800 p-3">
       <Customer />
     </div>
   );
