@@ -64,8 +64,8 @@ const AddProject = (props: Props) => {
 
   return (
     <div className="">
-      {modal ? (
-        <div className="rounded border border-black p-3 bg-green-500">
+      {modal && (
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded border border-black p-3 bg-green-500">
           <div className="flex flex-row justify-between items-center">
             <div className="invisible pr-3">&nbsp;</div>
             <h1 className="text-center">Add Project</h1>
@@ -87,6 +87,7 @@ const AddProject = (props: Props) => {
                   className="w-full h-7 mb-3 p-3 rounded border border-black box-border resize-y focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
                   value={projectName}
                   onChange={onProjectNameChanged}
+                  autoFocus
                 />
               </div>
             </div>
@@ -118,14 +119,13 @@ const AddProject = (props: Props) => {
             </div>
           </div>
         </div>
-      ) : (
-        <IconContext.Provider value={{ size: "2em" }}>
-          <AiOutlinePlusCircle
-            className="cursor-pointer"
-            onClick={handleModalClicked}
-          />
-        </IconContext.Provider>
       )}
+      <IconContext.Provider value={{ size: "2em" }}>
+        <AiOutlinePlusCircle
+          className="cursor-pointer"
+          onClick={handleModalClicked}
+        />
+      </IconContext.Provider>
     </div>
   );
 };

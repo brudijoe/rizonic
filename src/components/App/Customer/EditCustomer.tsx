@@ -45,8 +45,8 @@ const EditCustomer = (props: Props) => {
   return (
     <div className="mr-3">
       <div>
-        {modal ? (
-          <div className="rounded border border-black p-3 bg-blue-500">
+        {modal && (
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded border border-black p-3 bg-blue-500">
             <div className="flex flex-row justify-between items-center">
               <div className="invisible pr-3">&nbsp;</div>
               <h1 className="text-center">Edit Customer</h1>
@@ -67,6 +67,7 @@ const EditCustomer = (props: Props) => {
                   className="w-full h-7 mb-3 p-3 rounded border border-black box-border resize-y focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
                   value={customerName}
                   onChange={handleCustomerNameChanged}
+                  autoFocus
                 />
                 <button
                   type="button"
@@ -78,17 +79,16 @@ const EditCustomer = (props: Props) => {
               </div>
             </div>
           </div>
-        ) : (
-          <button
-            type="button"
-            className="w-full pl-3 pr-3 h-7 flex items-center justify-center rounded bg-blue-500 border-black border hover:bg-blue-300"
-            onClick={handleModalClicked}
-          >
-            <IconContext.Provider value={{ size: "1.25em" }}>
-              <GrEdit />
-            </IconContext.Provider>
-          </button>
         )}
+        <button
+          type="button"
+          className="w-full pl-3 pr-3 h-7 flex items-center justify-center rounded bg-blue-500 border-black border hover:bg-blue-300"
+          onClick={handleModalClicked}
+        >
+          <IconContext.Provider value={{ size: "1.25em" }}>
+            <GrEdit />
+          </IconContext.Provider>
+        </button>
       </div>
     </div>
   );

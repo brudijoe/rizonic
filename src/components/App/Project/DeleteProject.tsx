@@ -57,8 +57,8 @@ const DeleteProject = (props: Props) => {
   return (
     <div>
       <div>
-        {modal ? (
-          <div className="rounded border border-black p-3 bg-red-500">
+        {modal && (
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded border border-black p-3 bg-red-500">
             <div className="flex flex-row justify-between items-center">
               <div className="invisible pr-3">&nbsp;</div>
               <h1 className="text-center">Delete Project</h1>
@@ -81,17 +81,16 @@ const DeleteProject = (props: Props) => {
               </button>
             </div>
           </div>
-        ) : (
-          <button
-            type="button"
-            className="w-full pl-3 pr-3 h-7 flex items-center justify-center rounded bg-red-500 border-black border hover:bg-red-300 "
-            onClick={handleModalClicked}
-          >
-            <IconContext.Provider value={{ size: "1.25em" }}>
-              <MdDelete />
-            </IconContext.Provider>
-          </button>
         )}
+        <button
+          type="button"
+          className="w-full pl-3 pr-3 h-7 flex items-center justify-center rounded bg-red-500 border-black border hover:bg-red-300 "
+          onClick={handleModalClicked}
+        >
+          <IconContext.Provider value={{ size: "1.25em" }}>
+            <MdDelete />
+          </IconContext.Provider>
+        </button>
       </div>
     </div>
   );
