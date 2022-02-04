@@ -17,13 +17,13 @@ interface Props {
 const Task = (props: Props) => {
   return (
     <div>
+      <h1 className="font-bold">Task-Information</h1>
       {props.projectEntry.tasks.map((taskEntry) => (
         <div
           key={taskEntry.taskId}
           className="w-full rounded border border-black p-3 mt-3 bg-gray-400"
         >
           <div>
-            <h1 className="font-bold">Task-Information</h1>
             <div>Task-ID:&nbsp;{taskEntry.taskId}</div>
             <div>Task-Name:&nbsp;{taskEntry.taskName}</div>
             <div>Task-Status:&nbsp;{taskEntry.taskStatus}</div>
