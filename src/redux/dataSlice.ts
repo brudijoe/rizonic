@@ -66,14 +66,25 @@ const initialState: InitialCustomer = {
       projects: [
         {
           projectId: 2,
-          projectName: "C1_P1",
+          projectName: "Grow Tomato",
           projectStatus: "In progress",
           tasks: [ 
           {
             taskId: 1,
+            taskName: "Mix Soil",
+            taskStatus: "In progress"
+          },
+          {
+            taskId: 2,
             taskName: "Plant Seed",
             taskStatus: "In progress"
-          },],
+          },
+          {
+            taskId: 3,
+            taskName: "Water Seed",
+            taskStatus: "In progress"
+          },
+        ],
         },
         {
           projectId: 5,

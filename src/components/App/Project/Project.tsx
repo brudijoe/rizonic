@@ -4,6 +4,7 @@ import { AiOutlineDownCircle, AiOutlineUpCircle } from "react-icons/ai";
 import AddProject from "./AddProject";
 import DeleteProject from "./DeleteProject";
 import EditProject from "./EditProject";
+import Task from "../Task/Task";
 
 interface Props {
   currentCustomerId: number;
@@ -14,6 +15,11 @@ interface Props {
       projectId: number;
       projectName: string;
       projectStatus: string;
+      tasks: {
+        taskId: number;
+        taskName: string;
+        taskStatus: string;
+      }[];
     }[];
   };
 }
@@ -87,6 +93,10 @@ const Project = (props: Props) => {
                   currentProjectId={projectEntry.projectId}
                 />
               </div>
+              <Task
+                currentProjectId={projectEntry.projectId}
+                projectEntry={projectEntry}
+              />
             </div>
           </div>
         ))}
