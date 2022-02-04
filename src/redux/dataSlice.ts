@@ -10,6 +10,12 @@ export interface InitialCustomer {
           projectId: number,
           projectName: string,
           projectStatus: string
+          tasks: 
+          {
+            taskId: number;
+            taskName: string;
+            taskStatus: string
+          }[],
         }[],
     }[],
 }
@@ -25,6 +31,12 @@ interface CustomerIdAndCustomers {
           projectId: number;
           projectName: string;
           projectStatus: string
+          tasks: 
+          {
+            taskId: number;
+            taskName: string;
+            taskStatus: string
+          }[],
         }[],
     }[]
 }
@@ -37,6 +49,12 @@ interface CustomerIdAndProjects {
       projectId: number;
       projectName: string;
       projectStatus: string
+      tasks: 
+      {
+        taskId: number;
+        taskName: string;
+        taskStatus: string
+      }[],
     }[],
 }
 
@@ -49,17 +67,37 @@ const initialState: InitialCustomer = {
         {
           projectId: 2,
           projectName: "C1_P1",
-          projectStatus: "In progress"
+          projectStatus: "In progress",
+          tasks: [ 
+          {
+            taskId: 1,
+            taskName: "Plant Seed",
+            taskStatus: "In progress"
+          },],
         },
         {
           projectId: 5,
           projectName: "C1_P2",
           projectStatus: "On hold"
+          ,
+          tasks: [ 
+          {
+            taskId: 1,
+            taskName: "Plant Seed",
+            taskStatus: "In progress"
+          },],
         },
         {
           projectId: 15,
           projectName: "C1_P3",
           projectStatus: "Done"
+          ,
+          tasks: [ 
+          {
+            taskId: 1,
+            taskName: "Plant Seed",
+            taskStatus: "In progress"
+          },],
         },
       ],
     },
@@ -71,11 +109,25 @@ const initialState: InitialCustomer = {
           projectId: 1,
           projectName: "C2_P1",
           projectStatus: "In progress"
+          ,
+          tasks: [ 
+          {
+            taskId: 1,
+            taskName: "Plant Seed",
+            taskStatus: "In progress"
+          },],
         },
         {
           projectId: 150,
           projectName: "C2_P2",
           projectStatus: "In progress"
+          ,
+          tasks: [ 
+          {
+            taskId: 1,
+            taskName: "Plant Seed",
+            taskStatus: "In progress"
+          },],
         },
       ],
     },
@@ -87,6 +139,13 @@ const initialState: InitialCustomer = {
           projectId: 5,
           projectName: "C3_P1",
           projectStatus: "In progress"
+          ,
+          tasks: [ 
+          {
+            taskId: 1,
+            taskName: "Plant Seed",
+            taskStatus: "In progress"
+          },],
         },
       ],
     },
@@ -145,6 +204,13 @@ export const dataSlice = createSlice({
           projectId: projectId,
           projectName: projectName,
           projectStatus: projectStatus,
+          // ! Check later after implementation
+          tasks: [ 
+            {
+              taskId: 1,
+              taskName: "",
+              taskStatus: ""
+            },],
         }
         existingObject.projects.push(newProject)
       } else {
