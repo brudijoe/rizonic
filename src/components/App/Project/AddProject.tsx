@@ -65,7 +65,7 @@ const AddProject = (props: Props) => {
   return (
     <div className="">
       {modal && (
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded border border-black p-3 bg-green-500">
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded border border-black p-3 bg-green-500">
           <div className="flex flex-row justify-between items-center">
             <div className="invisible pr-3">&nbsp;</div>
             <h1 className="text-center">Add Project</h1>

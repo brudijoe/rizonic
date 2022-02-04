@@ -57,7 +57,7 @@ const EditProject = (props: Props) => {
   return (
     <div className="mr-3">
       {modal && (
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 rounded border border-black bg-blue-500">
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 rounded border border-black bg-blue-500">
           <div className="flex flex-row justify-between items-center">
             <div className="invisible pr-3">&nbsp;</div>
             <h1 className="text-center">Edit Project</h1>
