@@ -43,7 +43,7 @@ interface CustomerIdAndCustomers {
 
 interface CustomerIdAndProjects {
   currentCustomerIdProps: number;
-  currentProjectIdProps: number,
+  currentProjectIdProps: number;
   projects: 
     {
       projectId: number;
@@ -57,6 +57,20 @@ interface CustomerIdAndProjects {
       }[],
     }[],
 }
+
+interface CustomerIdAndTasks {
+  currentCustomerIdProps: number;
+  currentProjectIdProps: number;
+  currentTaskId: number;
+  tasks: 
+  {
+    taskId: number;
+    taskName: string;
+    taskStatus: string
+  }[],
+}
+
+
 
 const initialState: InitialCustomer = {
   customers: [
@@ -220,7 +234,7 @@ export const dataSlice = createSlice({
             {
               taskId: 1,
               taskName: "",
-              taskStatus: ""
+              taskStatus: "In progress"
             },],
         }
         existingObject.projects.push(newProject)
@@ -246,7 +260,7 @@ export const dataSlice = createSlice({
       }
     },
     projectDeleted(state, action: PayloadAction<CustomerIdAndProjects>) {
-      const { currentCustomerIdProps, projects, currentProjectIdProps } = action.payload;
+      const { currentCustomerIdProps, currentProjectIdProps, projects } = action.payload;
 
       const existingObject = state.customers.find(
         (obj) => obj.customerId === currentCustomerIdProps
@@ -269,10 +283,44 @@ export const dataSlice = createSlice({
         console.log("Can't find project");
       }
     },
+    taskAdded(state, action: PayloadAction<CustomerIdAndTasks>) {
+      // TODO
+    },
+    taskEdited(state, action: PayloadAction<CustomerIdAndTasks>) {
+      // TODO
+    },
+    taskDeleted(state, action: PayloadAction<CustomerIdAndTasks>) {
+      const { currentCustomerIdProps,  currentProjectIdProps, currentTaskId, tasks } = action.payload;
+
+      const existingObject = state.customers.find(
+        (obj) => obj.customerId === currentCustomerIdProps
+      ).projects.find(
+        (obj) => obj.projectId === currentProjectIdProps
+      ).tasks.find(
+        (obj) => obj.taskId === currentTaskId
+      );
+
+      if (existingObject) {
+        console.log("Task found");
+        
+        let newTasks = tasks.filter((taskEntry) => {
+          return taskEntry.taskId !== currentTaskId;
+        })
+        
+        state.customers.find(
+          (obj) => obj.customerId === currentCustomerIdProps
+        ).projects.find(
+          (obj) => obj.projectId === currentProjectIdProps
+        ).tasks = newTasks;
+
+      } else {
+        console.log("Can't find task");
+      }
+    },
   },
   extraReducers: {},
 });
 
-export const { customerAdded, customerEdited, customerDeleted, projectAdded, projectEdited, projectDeleted } = dataSlice.actions;
+export const { customerAdded, customerEdited, customerDeleted, projectAdded, projectEdited, projectDeleted, taskAdded, taskEdited, taskDeleted } = dataSlice.actions;
 
 export default dataSlice.reducer;
