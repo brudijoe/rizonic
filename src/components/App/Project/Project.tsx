@@ -75,9 +75,9 @@ const Project = (props: Props) => {
         props.customerEntry.projects.map((projectEntry) => (
           <div
             key={projectEntry.projectId}
-            className="w-full rounded border border-black p-3 mt-3 bg-gray-400"
+            className="flex flex-row w-full rounded border border-black p-3 mt-3 bg-gray-400"
           >
-            <div>
+            <div className="w-2/6">
               <h1 className="font-bold">Project-Information</h1>
               <div>Project-ID:&nbsp;{projectEntry.projectId}</div>
               <div>Project-Name:&nbsp;{projectEntry.projectName}</div>
@@ -93,6 +93,9 @@ const Project = (props: Props) => {
                   currentProjectId={projectEntry.projectId}
                 />
               </div>
+            </div>
+            <div className="w-4/6">
+              <h1 className="font-bold">Task-Information</h1>
               <Task
                 currentProjectId={projectEntry.projectId}
                 projectEntry={projectEntry}
