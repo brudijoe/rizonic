@@ -7,12 +7,12 @@ describe("customer", () => {
     cy.get('[data-cy="customer-information"]').should("not.exist");
   });
   it("open customer dropdown", () => {
-    cy.get('[data-cy="open-dropdown"]').click();
+    cy.get('[data-cy="open-customer-dropdown"]').click();
     cy.get('[data-cy="customer-information"]').should("exist");
   });
 
   it("close customer dropdown", () => {
-    cy.get('[data-cy="close-dropdown"]').click();
+    cy.get('[data-cy="close-customer-dropdown"]').click();
     cy.get('[data-cy="customer-information"]').should("not.exist");
   });
 });

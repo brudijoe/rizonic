@@ -4,7 +4,7 @@ describe("edit customer", () => {
     cy.visit("http://localhost:3000/", { failOnStatusCode: false });
   });
   it("open customer dropdown", () => {
-    cy.get('[data-cy="open-dropdown"]').click();
+    cy.get('[data-cy="open-customer-dropdown"]').click();
     cy.get('[data-cy="customer-information"]').should("exist");
   });
   it("check if customer exists", () => {

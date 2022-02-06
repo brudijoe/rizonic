@@ -34,7 +34,7 @@ const Customer = () => {
                   <AiOutlineUpCircle
                     className="cursor-pointer"
                     onClick={showDropDownCustomers}
-                    data-cy="close-dropdown"
+                    data-cy="close-customer-dropdown"
                   />
                 </IconContext.Provider>
               </div>
@@ -50,7 +50,7 @@ const Customer = () => {
                   <AiOutlineDownCircle
                     className="mr-3 cursor-pointer"
                     onClick={showDropDownCustomers}
-                    data-cy="open-dropdown"
+                    data-cy="open-customer-dropdown"
                   />
                 </IconContext.Provider>
               </div>
