@@ -18,7 +18,7 @@ const Customer = () => {
 
   // Dropdown Menu for Customer
   // ! Set to true for Development
-  const [dropDownCustomers, setDropDownCustomers] = useState(true);
+  const [dropDownCustomers, setDropDownCustomers] = useState(false);
   const showDropDownCustomers = () => {
     setDropDownCustomers(!dropDownCustomers);
   };
@@ -34,6 +34,7 @@ const Customer = () => {
                   <AiOutlineUpCircle
                     className="cursor-pointer"
                     onClick={showDropDownCustomers}
+                    data-cy="close-dropdown"
                   />
                 </IconContext.Provider>
               </div>
@@ -49,6 +50,7 @@ const Customer = () => {
                   <AiOutlineDownCircle
                     className="mr-3 cursor-pointer"
                     onClick={showDropDownCustomers}
+                    data-cy="open-dropdown"
                   />
                 </IconContext.Provider>
               </div>
@@ -61,9 +63,13 @@ const Customer = () => {
           customers.map((customerEntry) => (
             <div className="flex" key={customerEntry.customerId}>
               <div className="w-full bg-gray-500 rounded border border-black p-3 mt-3">
-                <h1 className="font-bold">Customer-Information</h1>
+                <h1 className="font-bold" data-cy="customer-information">
+                  Customer-Information
+                </h1>
                 <div>Customer-ID:&nbsp;{customerEntry.customerId}</div>
-                <div>Customer-Name:&nbsp;{customerEntry.customerName}</div>
+                <div data-cy="customer-name">
+                  Customer-Name:&nbsp;{customerEntry.customerName}
+                </div>
                 <div className="flex flex-row mt-3 mb-3">
                   <EditCustomer currentCustomerId={customerEntry.customerId} />
                   <DeleteCustomer

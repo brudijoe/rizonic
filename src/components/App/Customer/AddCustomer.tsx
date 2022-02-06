@@ -51,12 +51,15 @@ const AddCustomer = () => {
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded border border-black p-3 bg-green-500">
           <div className="flex flex-row justify-between items-center">
             <div className="invisible pr-3">&nbsp;</div>
-            <h1 className="text-center">Add Customer</h1>
+            <h1 className="text-center" data-cy="add-customer-h1">
+              Add Customer
+            </h1>
             <div className="pl-3">
               <IconContext.Provider value={{ size: "1.25em" }}>
                 <AiOutlineClose
                   className="cursor-pointer"
                   onClick={handleModalClicked}
+                  data-cy="add-customer-close"
                 />
               </IconContext.Provider>
             </div>
@@ -71,11 +74,13 @@ const AddCustomer = () => {
                 minLength={2}
                 maxLength={100}
                 autoFocus
+                data-cy="add-customer-input"
               />
               <button
                 type="button"
                 className="w-full h-7 rounded bg-green-600 border-black border hover:bg-green-300 "
                 onClick={onAddCustomerClicked}
+                data-cy="add-customer-button"
               >
                 Add Customer
               </button>
@@ -87,6 +92,7 @@ const AddCustomer = () => {
         <AiOutlinePlusCircle
           className="cursor-pointer"
           onClick={handleModalClicked}
+          data-cy="add-customer-icon"
         />
       </IconContext.Provider>
     </div>
