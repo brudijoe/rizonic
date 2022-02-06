@@ -42,7 +42,9 @@ const DeleteCustomer = (props: Props) => {
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  rounded border border-black p-3 bg-red-500">
           <div className="flex flex-row justify-between items-center">
             <div className="invisible pr-3">&nbsp;</div>
-            <h1 className="text-center">Delete Customer</h1>
+            <h1 className="text-center" data-cy="delete-customer-h1">
+              Delete Customer
+            </h1>
             <div className="pl-3">
               <IconContext.Provider value={{ size: "1.25em" }}>
                 <AiOutlineClose
@@ -57,6 +59,7 @@ const DeleteCustomer = (props: Props) => {
               type="button"
               className="w-full rounded h-7 bg-red-600 border-black border hover:bg-red-300"
               onClick={handleCustomerDeletedYes}
+              data-cy="delete-customer-button"
             >
               Yes
             </button>
@@ -67,6 +70,7 @@ const DeleteCustomer = (props: Props) => {
         type="button"
         className="w-full pl-3 pr-3  h-7 flex items-center justify-center rounded bg-red-500 border-black border hover:bg-red-300"
         onClick={handleModalClicked}
+        data-cy="delete-customer-icon"
       >
         <IconContext.Provider value={{ size: "1.25em" }}>
           <MdDelete />

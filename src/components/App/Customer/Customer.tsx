@@ -66,7 +66,9 @@ const Customer = () => {
                 <h1 className="font-bold" data-cy="customer-information">
                   Customer-Information
                 </h1>
-                <div>Customer-ID:&nbsp;{customerEntry.customerId}</div>
+                <div data-cy="customer-id">
+                  Customer-ID:&nbsp;{customerEntry.customerId}
+                </div>
                 <div data-cy="customer-name">
                   Customer-Name:&nbsp;{customerEntry.customerName}
                 </div>

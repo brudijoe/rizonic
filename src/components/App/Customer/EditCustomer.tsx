@@ -49,12 +49,15 @@ const EditCustomer = (props: Props) => {
           <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded border border-black p-3 bg-blue-500">
             <div className="flex flex-row justify-between items-center">
               <div className="invisible pr-3">&nbsp;</div>
-              <h1 className="text-center">Edit Customer</h1>
+              <h1 className="text-center" data-cy="edit-customer-h1">
+                Edit Customer
+              </h1>
               <div className="pl-3">
                 <IconContext.Provider value={{ size: "1.25em" }}>
                   <AiOutlineClose
                     className="cursor-pointer"
                     onClick={handleModalClicked}
+                    data-cy="edit-customer-close"
                   />
                 </IconContext.Provider>
               </div>
@@ -68,13 +71,15 @@ const EditCustomer = (props: Props) => {
                   value={customerName}
                   onChange={handleCustomerNameChanged}
                   autoFocus
+                  data-cy="edit-customer-input"
                 />
                 <button
                   type="button"
                   className="w-full rounded h-7 bg-blue-600 border-black border hover:bg-blue-300"
                   onClick={handleCustomerEdited}
+                  data-cy="edit-customer-button"
                 >
-                  Change Customer
+                  Edit Customer
                 </button>
               </div>
             </div>
@@ -84,6 +89,7 @@ const EditCustomer = (props: Props) => {
           type="button"
           className="w-full pl-3 pr-3 h-7 flex items-center justify-center rounded bg-blue-500 border-black border hover:bg-blue-300"
           onClick={handleModalClicked}
+          data-cy="edit-customer-icon"
         >
           <IconContext.Provider value={{ size: "1.25em" }}>
             <GrEdit />
