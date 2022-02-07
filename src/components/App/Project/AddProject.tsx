@@ -68,12 +68,15 @@ const AddProject = (props: Props) => {
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded border border-black p-3 bg-green-500">
           <div className="flex flex-row justify-between items-center">
             <div className="invisible pr-3">&nbsp;</div>
-            <h1 className="text-center">Add Project</h1>
+            <h1 className="text-center" data-cy="add-project-h1">
+              Add Project
+            </h1>
             <div className="pl-3">
               <IconContext.Provider value={{ size: "1.25em" }}>
                 <AiOutlineClose
                   className="cursor-pointer"
                   onClick={handleModalClicked}
+                  data-cy="add-project-close"
                 />
               </IconContext.Provider>
             </div>
@@ -88,6 +91,7 @@ const AddProject = (props: Props) => {
                   value={projectName}
                   onChange={onProjectNameChanged}
                   autoFocus
+                  data-cy="add-project-input"
                 />
               </div>
             </div>
@@ -99,6 +103,7 @@ const AddProject = (props: Props) => {
                   name="projectstatus"
                   id="projectstatus"
                   onChange={handleNewProjectStatus}
+                  data-cy="add-project-select"
                 >
                   <option value={projectStatus[0]}>{projectStatus[0]}</option>
                   <option value={projectStatus[1]}>{projectStatus[1]}</option>
@@ -113,6 +118,7 @@ const AddProject = (props: Props) => {
                 type="button"
                 className="w-3/6 h-7 rounded bg-green-600 border-black border hover:bg-green-300"
                 onClick={onAddProjectClicked}
+                data-cy="add-project-button"
               >
                 Add Project
               </button>
@@ -124,6 +130,7 @@ const AddProject = (props: Props) => {
         <AiOutlinePlusCircle
           className="cursor-pointer"
           onClick={handleModalClicked}
+          data-cy="add-project-icon"
         />
       </IconContext.Provider>
     </div>
