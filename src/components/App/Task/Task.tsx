@@ -27,39 +27,20 @@ const Task = (props: Props) => {
   const currentCustomerIdProps = props.currentCustomerId;
   const currentProjectIdProps = props.currentProjectId;
 
-  const tasksRedux = useAppSelector(
-    (state) =>
-      state.data.customers
-        .find((obj) => obj.customerId === currentCustomerIdProps)
-        ?.projects.find((obj) => obj.projectId === currentProjectIdProps).tasks
-  );
-
-  const [tasks, setTasks] = useState(tasksRedux);
-
-  useEffect(() => {
-    setTasks(tasksRedux);
-  }, [tasksRedux]);
-
   const handleTaskDeleted = async (currentTaskId: number) => {
-    // TODO console log current taskID
-    console.log(currentTaskId);
-
-    // Can't delete if only 1 task is remaining
-    // if ((task?.length as number) > 1) {
     try {
       const resultAction = await dispatch(
         taskDeleted({
           currentCustomerIdProps,
           currentProjectIdProps,
           currentTaskId,
-          tasks,
+          tasks: props.projectEntry.tasks,
         })
       );
       unwrapResult(resultAction);
     } catch (err) {
       console.error("Failed to delete project: ", err);
     }
-    // }
   };
 
   return (

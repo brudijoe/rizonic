@@ -9,6 +9,16 @@ import { MdDelete } from "react-icons/md";
 interface Props {
   currentCustomerId: number;
   currentProjectId: number;
+  projectEntry: {
+    projectId: number;
+    projectName: string;
+    projectStatus: string;
+    tasks: {
+      taskId: number;
+      taskName: string;
+      taskStatus: string;
+    }[];
+  };
 }
 
 const DeleteProject = (props: Props) => {
