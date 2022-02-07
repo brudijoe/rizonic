@@ -83,7 +83,9 @@ const Project = (props: Props) => {
               <h1 className="font-bold" data-cy="project-information">
                 Project-Information
               </h1>
-              <div>Project-ID:&nbsp;{projectEntry.projectId}</div>
+              <div data-cy="project-id">
+                Project-ID:&nbsp;{projectEntry.projectId}
+              </div>
               <div data-cy="project-name">
                 Project-Name:&nbsp;{projectEntry.projectName}
               </div>
