@@ -89,7 +89,9 @@ const Project = (props: Props) => {
               <div data-cy="project-name">
                 Project-Name:&nbsp;{projectEntry.projectName}
               </div>
-              <div>Project-Status:&nbsp;{projectEntry.projectStatus}</div>
+              <div data-cy="project-status">
+                Project-Status:&nbsp;{projectEntry.projectStatus}
+              </div>
               <div className="flex flex-row mt-3">
                 <EditProject
                   currentCustomerId={props.currentCustomerId}

@@ -60,12 +60,15 @@ const EditProject = (props: Props) => {
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 rounded border border-black bg-blue-500">
           <div className="flex flex-row justify-between items-center">
             <div className="invisible pr-3">&nbsp;</div>
-            <h1 className="text-center">Edit Project</h1>
+            <h1 className="text-center" data-cy="edit-project-h1">
+              Edit Project
+            </h1>
             <div className="pl-3">
               <IconContext.Provider value={{ size: "1.25em" }}>
                 <AiOutlineClose
                   className="cursor-pointer"
                   onClick={handleModalClicked}
+                  data-cy="edit-project-close"
                 />
               </IconContext.Provider>
             </div>
@@ -80,6 +83,7 @@ const EditProject = (props: Props) => {
                   value={projectName}
                   onChange={handleProjectNameChanged}
                   autoFocus
+                  data-cy="edit-project-input"
                 />
               </div>
             </div>
@@ -91,6 +95,7 @@ const EditProject = (props: Props) => {
                   name="projectstatus"
                   id="projectstatus"
                   onChange={handleNewProjectStatus}
+                  data-cy="edit-project-select"
                 >
                   <option value={projectStatus[0]}>{projectStatus[0]}</option>
                   <option value={projectStatus[1]}>{projectStatus[1]}</option>
@@ -105,8 +110,9 @@ const EditProject = (props: Props) => {
                 type="button"
                 className="w-3/6 h-7 rounded border-black border bg-blue-600 hover:bg-blue-300 "
                 onClick={handleProjectEdited}
+                data-cy="edit-project-button"
               >
-                Change Project
+                Edit Project
               </button>
             </div>
           </div>
@@ -116,6 +122,7 @@ const EditProject = (props: Props) => {
         type="button"
         className="w-full pl-3 pr-3 h-7 flex items-center justify-center rounded border border-black bg-blue-500 hover:bg-blue-300 "
         onClick={handleModalClicked}
+        data-cy="edit-project-icon"
       >
         <IconContext.Provider value={{ size: "1.25em" }}>
           <GrEdit />
