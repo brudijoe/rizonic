@@ -4,7 +4,7 @@ import { GrEdit } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { taskAdded, taskDeleted } from "../../../redux/dataSlice";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 
 interface Props {
@@ -28,18 +28,23 @@ const Task = (props: Props) => {
   const currentCustomerIdProps = props.currentCustomerId;
   const currentProjectIdProps = props.currentProjectId;
 
-  // const handleTaskAdded = async () => {
-  //   try {
-  //     const resultAction = await dispatch(
-  //       taskAdded({
+  const tasks = props.projectEntry.tasks;
+  const lastTaskId = props.projectEntry.tasks[tasks.length - 1].taskId;
 
-  //       })
-  //     );
-  //     unwrapResult(resultAction);
-  //   } catch (err) {
-  //     console.error("Failed to add task: ", err);
-  //   }
-  // };
+  const handleTaskAdded = async () => {
+    try {
+      const resultAction = await dispatch(
+        taskAdded({
+          currentCustomerIdProps,
+          currentProjectIdProps,
+          taskId: lastTaskId + 1,
+        })
+      );
+      unwrapResult(resultAction);
+    } catch (err) {
+      console.error("Failed to add task: ", err);
+    }
+  };
 
   const handleTaskDeleted = async (currentTaskId: number) => {
     try {
@@ -66,7 +71,7 @@ const Task = (props: Props) => {
         <IconContext.Provider value={{ size: "1.25em", color: "#15803d" }}>
           <AiOutlinePlusCircle
             className="cursor-pointer"
-            // onClick={handleTaskAdded}
+            onClick={handleTaskAdded}
             data-cy="add-task-icon"
           />
         </IconContext.Provider>
@@ -88,7 +93,7 @@ const Task = (props: Props) => {
               <td data-cy="task-id-tbody">{taskEntry.taskId}</td>
               <td>{taskEntry.taskName}</td>
               <td>{taskEntry.taskStatus}</td>
-              <td>Placeholder-Bob</td>
+              <td>Empty</td>
               <td>
                 <div className="flex items-center justify-center">
                   <button
