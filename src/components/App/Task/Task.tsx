@@ -4,7 +4,7 @@ import { GrEdit } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { taskAdded, taskDeleted } from "../../../redux/dataSlice";
-import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch } from "../../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 
 interface Props {
