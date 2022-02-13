@@ -1,5 +1,5 @@
 /// <reference types="Cypress" />
-describe("task", () => {
+describe("delete task", () => {
   it("visit localhost", () => {
     cy.visit("http://localhost:3000/", { failOnStatusCode: false });
   });

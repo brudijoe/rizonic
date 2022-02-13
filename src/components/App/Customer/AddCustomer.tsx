@@ -88,7 +88,7 @@ const AddCustomer = () => {
           </div>
         </div>
       )}
-      <IconContext.Provider value={{ size: "2em" }}>
+      <IconContext.Provider value={{ size: "2em", color: "#15803d" }}>
         <AiOutlinePlusCircle
           className="cursor-pointer"
           onClick={handleModalClicked}
