@@ -1,11 +1,8 @@
 import React from "react";
 import { IconContext } from "react-icons";
 import { GrEdit } from "react-icons/gr";
-import { AiOutlinePlusCircle } from "react-icons/ai";
-import { taskAdded } from "../../../redux/dataSlice";
-import { useAppDispatch } from "../../../redux/hooks";
-import { unwrapResult } from "@reduxjs/toolkit";
 import DeleteTask from "./DeleteTask";
+import AddTask from "./AddTask";
 
 interface Props {
   currentCustomerId: number;
@@ -23,28 +20,7 @@ interface Props {
 }
 
 const Task = (props: Props) => {
-  const dispatch = useAppDispatch();
-
-  const currentCustomerIdProps = props.currentCustomerId;
-  const currentProjectIdProps = props.currentProjectId;
-
   const tasks = props.projectEntry.tasks;
-  const lastTaskId = props.projectEntry.tasks[tasks.length - 1].taskId;
-
-  const handleTaskAdded = async () => {
-    try {
-      const resultAction = await dispatch(
-        taskAdded({
-          currentCustomerIdProps,
-          currentProjectIdProps,
-          taskId: lastTaskId + 1,
-        })
-      );
-      unwrapResult(resultAction);
-    } catch (err) {
-      console.error("Failed to add task: ", err);
-    }
-  };
 
   return (
     <div>
@@ -52,13 +28,11 @@ const Task = (props: Props) => {
         <h1 className="font-bold mr-1" data-cy="task-information">
           Task-Information
         </h1>
-        <IconContext.Provider value={{ size: "1.25em", color: "#15803d" }}>
-          <AiOutlinePlusCircle
-            className="cursor-pointer"
-            onClick={handleTaskAdded}
-            data-cy="add-task-icon"
-          />
-        </IconContext.Provider>
+        <AddTask
+          currentCustomerId={props.currentCustomerId}
+          currentProjectId={props.projectEntry.projectId}
+          projectEntry={props.projectEntry}
+        />
       </div>
       <table className="w-full text-center border border-black divide-y divide-black">
         <thead className="bg-gray-200">
