@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { projectDeleted } from "../../../redux/dataSlice";
-import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch } from "../../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { IconContext } from "react-icons";
 import { AiOutlineClose } from "react-icons/ai";
@@ -9,6 +9,16 @@ import { MdDelete } from "react-icons/md";
 interface Props {
   currentCustomerId: number;
   currentProjectId: number;
+  projects: {
+    projectId: number;
+    projectName: string;
+    projectStatus: string;
+    tasks: {
+      taskId: number;
+      taskName: string;
+      taskStatus: string;
+    }[];
+  }[];
   projectEntry: {
     projectId: number;
     projectName: string;
@@ -27,28 +37,15 @@ const DeleteProject = (props: Props) => {
   const currentCustomerIdProps = props.currentCustomerId;
   const currentProjectIdProps = props.currentProjectId;
 
-  const projectsRedux = useAppSelector(
-    (state) =>
-      state.data.customers.find(
-        (obj) => obj.customerId === currentCustomerIdProps
-      )?.projects
-  );
-
-  const [projects, setProjects] = useState(projectsRedux);
-
-  useEffect(() => {
-    setProjects(projectsRedux);
-  }, [projectsRedux]);
-
   const handleProjectDeletedYes = async () => {
     // Can't delete if only 1 project is remaining
-    if ((projects?.length as number) > 1) {
+    if ((props.projects?.length as number) > 1) {
       try {
         const resultAction = await dispatch(
           projectDeleted({
             currentCustomerIdProps,
             currentProjectIdProps,
-            projects: projects,
+            projects: props.projects,
           })
         );
         unwrapResult(resultAction);

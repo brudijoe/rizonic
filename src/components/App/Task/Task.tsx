@@ -1,11 +1,11 @@
 import React from "react";
 import { IconContext } from "react-icons";
 import { GrEdit } from "react-icons/gr";
-import { MdDelete } from "react-icons/md";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { taskAdded, taskDeleted } from "../../../redux/dataSlice";
+import { taskAdded } from "../../../redux/dataSlice";
 import { useAppDispatch } from "../../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
+import DeleteTask from "./DeleteTask";
 
 interface Props {
   currentCustomerId: number;
@@ -43,22 +43,6 @@ const Task = (props: Props) => {
       unwrapResult(resultAction);
     } catch (err) {
       console.error("Failed to add task: ", err);
-    }
-  };
-
-  const handleTaskDeleted = async (currentTaskId: number) => {
-    try {
-      const resultAction = await dispatch(
-        taskDeleted({
-          currentCustomerIdProps,
-          currentProjectIdProps,
-          currentTaskId,
-          tasks: props.projectEntry.tasks,
-        })
-      );
-      unwrapResult(resultAction);
-    } catch (err) {
-      console.error("Failed to delete project: ", err);
     }
   };
 
@@ -109,16 +93,12 @@ const Task = (props: Props) => {
               </td>
               <td className="">
                 <div className="flex items-center justify-center">
-                  <button
-                    type="button"
-                    className="rounded bg-red-500 border-black border hover:bg-red-300"
-                    onClick={() => handleTaskDeleted(taskEntry.taskId)}
-                    data-cy="delete-task-icon"
-                  >
-                    <IconContext.Provider value={{ size: "1.25em" }}>
-                      <MdDelete />
-                    </IconContext.Provider>
-                  </button>
+                  <DeleteTask
+                    currentCustomerId={props.currentCustomerId}
+                    currentProjectId={props.projectEntry.projectId}
+                    tasks={tasks}
+                    taskEntry={taskEntry}
+                  />
                 </div>
               </td>
             </tr>

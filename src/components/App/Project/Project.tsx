@@ -101,6 +101,7 @@ const Project = (props: Props) => {
                 <DeleteProject
                   currentCustomerId={props.currentCustomerId}
                   currentProjectId={projectEntry.projectId}
+                  projects={props.customerEntry.projects}
                   projectEntry={projectEntry}
                 />
               </div>
