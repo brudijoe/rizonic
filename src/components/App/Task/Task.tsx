@@ -1,8 +1,7 @@
 import React from "react";
-import { IconContext } from "react-icons";
-import { GrEdit } from "react-icons/gr";
 import DeleteTask from "./DeleteTask";
 import AddTask from "./AddTask";
+import EditTask from "./EditTask";
 
 interface Props {
   currentCustomerId: number;
@@ -48,23 +47,11 @@ const Task = (props: Props) => {
         <tbody className="bg-white divide-y divide-black">
           {props.projectEntry.tasks.map((taskEntry) => (
             <tr key={taskEntry.taskId} className="">
-              <td data-cy="task-id-tbody">{taskEntry.taskId}</td>
-              <td>{taskEntry.taskName}</td>
-              <td>{taskEntry.taskStatus}</td>
-              <td>Empty</td>
-              <td>
-                <div className="flex items-center justify-center">
-                  <button
-                    type="button"
-                    className="rounded bg-blue-500 border-black border hover:bg-blue-300"
-                    // onClick={}
-                  >
-                    <IconContext.Provider value={{ size: "1.25em" }}>
-                      <GrEdit />
-                    </IconContext.Provider>
-                  </button>
-                </div>
-              </td>
+              <EditTask
+                currentCustomerId={props.currentCustomerId}
+                currentProjectId={props.projectEntry.projectId}
+                taskEntry={taskEntry}
+              />
               <td className="">
                 <div className="flex items-center justify-center">
                   <DeleteTask

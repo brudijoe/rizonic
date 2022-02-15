@@ -67,6 +67,13 @@ interface CustomerIdAndProjectId {
   taskId: number;
 }
 
+interface CustomerIdAndProjectIdAndTaskId {
+  currentCustomerIdProps: number;
+  currentProjectIdProps: number;
+  currentTaskIdProps: number;
+  taskName: string;
+}
+
 const initialState: InitialCustomer = {
   customers: [
     {
@@ -303,8 +310,26 @@ export const dataSlice = createSlice({
         console.log("Can't find project");
       }
     },
-    taskEdited(state, action: PayloadAction<CustomerIdAndTasks>) {
+    taskEdited(state, action: PayloadAction<CustomerIdAndProjectIdAndTaskId>) {
       // TODO
+      const {
+        currentCustomerIdProps,
+        currentProjectIdProps,
+        currentTaskIdProps,
+        taskName,
+      } = action.payload;
+
+      const existingObject = state.customers
+        .find((obj) => obj.customerId === currentCustomerIdProps)
+        .projects.find((obj) => obj.projectId === currentProjectIdProps)
+        .tasks.find((obj) => obj.taskId === currentTaskIdProps);
+
+      if (existingObject) {
+        console.log("Task found");
+        existingObject.taskName = taskName;
+      } else {
+        console.log("Can't find task");
+      }
     },
     taskDeleted(state, action: PayloadAction<CustomerIdAndTasks>) {
       const {
