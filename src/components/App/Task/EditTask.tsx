@@ -28,6 +28,13 @@ const EditTask = (props: Props) => {
   const handleTaskNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
     setTaskName(e.currentTarget.value);
 
+  const taskStatus = ["", "In progress", "On hold", "Done"];
+  const [currentTaskStatus, setCurrentTaskStatus] = useState<string>("");
+
+  const handleNewTaskStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCurrentTaskStatus(e.currentTarget.value);
+  };
+
   const currentCustomerIdProps = props.currentCustomerId;
   const currentProjectIdProps = props.currentProjectId;
   const currentTaskIdProps = props.taskEntry.taskId;
@@ -41,6 +48,7 @@ const EditTask = (props: Props) => {
             currentProjectIdProps,
             currentTaskIdProps,
             taskName,
+            taskStatus: currentTaskStatus,
           })
         );
         unwrapResult(resultAction);
@@ -58,7 +66,7 @@ const EditTask = (props: Props) => {
         <td className="">
           <input
             maxLength={20}
-            className="text-center box-border"
+            className="text-center"
             value={taskName}
             onChange={handleTaskNameChanged}
             autoFocus
@@ -68,7 +76,25 @@ const EditTask = (props: Props) => {
       ) : (
         <td>{props.taskEntry.taskName}</td>
       )}
-      <td>{props.taskEntry.taskStatus}</td>
+      {isTaskEdited ? (
+        <td>
+          <select
+            className=""
+            name="taskstatus"
+            id="taskstatus"
+            onChange={handleNewTaskStatus}
+            data-cy="edit-task-select"
+          >
+            <option value={taskStatus[0]}>{taskStatus[0]}</option>
+            <option value={taskStatus[1]}>{taskStatus[1]}</option>
+            <option value={taskStatus[2]}>{taskStatus[2]}</option>
+            <option value={taskStatus[3]}>{taskStatus[3]}</option>
+          </select>
+        </td>
+      ) : (
+        <td>{props.taskEntry.taskStatus}</td>
+      )}
+
       <td>Empty</td>
       <td>
         <div className="flex items-center justify-center">

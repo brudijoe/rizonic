@@ -72,6 +72,7 @@ interface CustomerIdAndProjectIdAndTaskId {
   currentProjectIdProps: number;
   currentTaskIdProps: number;
   taskName: string;
+  taskStatus: string;
 }
 
 const initialState: InitialCustomer = {
@@ -317,6 +318,7 @@ export const dataSlice = createSlice({
         currentProjectIdProps,
         currentTaskIdProps,
         taskName,
+        taskStatus
       } = action.payload;
 
       const existingObject = state.customers
@@ -327,6 +329,7 @@ export const dataSlice = createSlice({
       if (existingObject) {
         console.log("Task found");
         existingObject.taskName = taskName;
+        existingObject.taskStatus = taskStatus;
       } else {
         console.log("Can't find task");
       }
@@ -336,7 +339,7 @@ export const dataSlice = createSlice({
         currentCustomerIdProps,
         currentProjectIdProps,
         currentTaskId,
-        tasks,
+        tasks
       } = action.payload;
 
       const existingObject = state.customers
