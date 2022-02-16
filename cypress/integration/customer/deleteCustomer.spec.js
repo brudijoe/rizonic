@@ -1,5 +1,5 @@
 /// <reference types="Cypress" />
-describe("customer customer", () => {
+describe("delete customer", () => {
   it("visit localhost", () => {
     cy.visit("http://localhost:3000/", { failOnStatusCode: false });
   });
@@ -7,17 +7,17 @@ describe("customer customer", () => {
     cy.get('[data-cy="open-customer-dropdown"]').click();
     cy.get('[data-cy="customer-information"]').should("exist");
   });
-  it("check if customer exists", () => {
-    cy.get('[data-cy="customer-id"]').contains(10);
+  it("check if 3 customers exist", () => {
+    cy.get('[data-cy="customer-information"]').should("have.length", 3);
   });
-  it("open delete customer modal", () => {
+  it("open last customer modal", () => {
     cy.get('[data-cy="delete-customer-icon"]').last().click();
     cy.get('[data-cy="delete-customer-h1"]').contains("Delete Customer");
   });
-  it("click yes delete customer button", () => {
+  it("delete last customer", () => {
     cy.get('[data-cy="delete-customer-button"]').click();
   });
-  it("check if customer was deleted", () => {
-    cy.get('[data-cy="customer-id"]').contains(10).should("not.exist");
+  it("check if last customer was deleted", () => {
+    cy.get('[data-cy="customer-information"]').should("have.length", 2);
   });
 });
