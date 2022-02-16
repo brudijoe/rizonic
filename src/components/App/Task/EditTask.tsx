@@ -74,7 +74,7 @@ const EditTask = (props: Props) => {
           />
         </td>
       ) : (
-        <td>{props.taskEntry.taskName}</td>
+        <td data-cy="edit-task-input-save">{props.taskEntry.taskName}</td>
       )}
       {isTaskEdited ? (
         <td>
@@ -92,7 +92,7 @@ const EditTask = (props: Props) => {
           </select>
         </td>
       ) : (
-        <td>{props.taskEntry.taskStatus}</td>
+        <td data-cy="edit-task-select-save">{props.taskEntry.taskStatus}</td>
       )}
 
       <td>Empty</td>
@@ -106,6 +106,7 @@ const EditTask = (props: Props) => {
                 handleEditTask();
                 handleTaskEdited();
               }}
+              data-cy="edit-task-button-save"
             >
               <IconContext.Provider value={{ size: "1.25em" }}>
                 <MdDone />
@@ -116,6 +117,7 @@ const EditTask = (props: Props) => {
               type="button"
               className="rounded bg-blue-500 border-black border hover:bg-blue-300"
               onClick={handleEditTask}
+              data-cy="edit-task-button"
             >
               <IconContext.Provider value={{ size: "1.25em" }}>
                 <GrEdit />
