@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IconContext } from "react-icons";
 import { FcSearch } from "react-icons/fc";
+// Redux
+import { useAppSelector } from "../../../redux/hooks";
 
 const Employee = () => {
-  const employees = [
-    { id: "1", name: "Ingo" },
-    { id: "2", name: "Bob" },
-    { id: "3", name: "Inga" },
-  ];
+  const employeesRedux = useAppSelector((state) => state.employee.employees);
+  const [employees, setEmployees] = useState(employeesRedux);
+
+  useEffect(() => {
+    setEmployees(employeesRedux);
+  }, [employeesRedux]);
 
   const [query, setQuery] = useState<string>("");
 
@@ -20,7 +23,7 @@ const Employee = () => {
     }
 
     return employees.filter((employeesEntry) => {
-      const employeeName = employeesEntry.name.toLowerCase();
+      const employeeName = employeesEntry.employeeName.toLowerCase();
       return employeeName.includes(query.toLowerCase().trim());
     });
   };
@@ -56,10 +59,10 @@ const Employee = () => {
         {filteredEmployees.map((employeesEntry) => (
           <div className="bg-gray-300 p-3 m-3 rounded" key={employeesEntry.id}>
             <div data-cy="customer-id">
-              Employee-ID:&nbsp;{employeesEntry.id}
+              Employee-ID:&nbsp;{employeesEntry.employeeId}
             </div>
             <div data-cy="customer-name">
-              Employee-Name:&nbsp;{employeesEntry.name}
+              Employee-Name:&nbsp;{employeesEntry.employeeName}
             </div>
           </div>
         ))}

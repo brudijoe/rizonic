@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import dataReducer from "../redux/dataSlice";
+import employeeReducer from "../redux/employeeSlice";
 
 export const store = configureStore({
   reducer: {
     data: dataReducer,
+    employee: employeeReducer
   },
 })
 
