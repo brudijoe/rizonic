@@ -3,11 +3,11 @@ import { IconContext } from "react-icons";
 import { FcSearch } from "react-icons/fc";
 
 const Employee = () => {
-  const [employees, setEmployees] = useState([
+  const employees = [
     { id: "1", name: "Ingo" },
     { id: "2", name: "Bob" },
     { id: "3", name: "Inga" },
-  ]);
+  ];
 
   const [query, setQuery] = useState<string>("");
 
@@ -54,7 +54,7 @@ const Employee = () => {
           Employee-Information
         </h1>
         {filteredEmployees.map((employeesEntry) => (
-          <div className="bg-gray-300 p-3 m-3" key={employeesEntry.id}>
+          <div className="bg-gray-300 p-3 m-3 rounded" key={employeesEntry.id}>
             <div data-cy="customer-id">
               Employee-ID:&nbsp;{employeesEntry.id}
             </div>
