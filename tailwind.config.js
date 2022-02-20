@@ -2,8 +2,7 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
-  darkMode: false, // or 'media' or 'class'
+  content: ["./src/**/*.{html,js,jsx,ts,tsx}", "./public/index.html"],
   theme: {
     colors: {
       // Configure your color palette here
@@ -11,7 +10,7 @@ module.exports = {
       current: "currentColor",
       black: colors.black,
       white: colors.white,
-      gray: colors.coolGray,
+      gray: colors.gray,
       green: colors.emerald,
       blue: colors.blue,
       indigo: colors.indigo,

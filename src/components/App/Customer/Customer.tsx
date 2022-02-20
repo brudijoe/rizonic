@@ -24,7 +24,7 @@ const Customer = () => {
   };
 
   return (
-    <div className="w-10/12 h-full min-h-screen bg-gray-800 p-3">
+    <div className="w-10/12 h-full min-h-screen bg-gray-600 p-3">
       <div className="bg-gray-100 rounded p-3 border border-black">
         {dropDownCustomers ? (
           <div className="flex flex-row ml-3 mr-3 items-center justify-between">
