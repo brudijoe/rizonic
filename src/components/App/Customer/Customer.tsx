@@ -29,15 +29,13 @@ const Customer = () => {
         {dropDownCustomers ? (
           <div className="flex flex-row ml-3 mr-3 items-center justify-between">
             <div className="flex flex-row items-center">
-              <div>
-                <IconContext.Provider value={{ size: "2em" }}>
-                  <AiOutlineUpCircle
-                    className="cursor-pointer"
-                    onClick={showDropDownCustomers}
-                    data-cy="close-customer-dropdown"
-                  />
-                </IconContext.Provider>
-              </div>
+              <IconContext.Provider value={{ size: "2em" }}>
+                <AiOutlineUpCircle
+                  className="cursor-pointer"
+                  onClick={showDropDownCustomers}
+                  data-cy="close-customer-dropdown"
+                />
+              </IconContext.Provider>
               <h1 className="ml-3 text-center text-2xl font-bold">Customers</h1>
             </div>
             <AddCustomer />
@@ -45,15 +43,13 @@ const Customer = () => {
         ) : (
           <div className="flex flex-row ml-3 mr-3 items-center justify-between">
             <div className="flex flex-row items-center">
-              <div>
-                <IconContext.Provider value={{ size: "2em" }}>
-                  <AiOutlineDownCircle
-                    className="mr-3 cursor-pointer"
-                    onClick={showDropDownCustomers}
-                    data-cy="open-customer-dropdown"
-                  />
-                </IconContext.Provider>
-              </div>
+              <IconContext.Provider value={{ size: "2em" }}>
+                <AiOutlineDownCircle
+                  className="mr-3 cursor-pointer"
+                  onClick={showDropDownCustomers}
+                  data-cy="open-customer-dropdown"
+                />
+              </IconContext.Provider>
               <h1 className="text-center text-2xl font-bold">Customers</h1>
             </div>
             <AddCustomer />
