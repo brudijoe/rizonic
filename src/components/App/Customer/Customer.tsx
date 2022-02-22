@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { IconContext } from "react-icons";
-import { AiOutlineDownCircle, AiOutlineUpCircle } from "react-icons/ai";
 import AddCustomer from "./AddCustomer";
 import DeleteCustomer from "./DeleteCustomer";
 import EditCustomer from "./EditCustomer";
