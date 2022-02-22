@@ -16,10 +16,6 @@ describe("add customer", () => {
     cy.get('[data-cy="add-customer-close"]').click();
     cy.get('[data-cy="add-customer-h1"]').should("not.exist");
   });
-  it("open customer dropdown", () => {
-    cy.get('[data-cy="open-customer-dropdown"]').click();
-    cy.get('[data-cy="customer-information"]').should("exist");
-  });
   it("check if example customer exists", () => {
     cy.get('[data-cy="customer-name"]').contains("Example Customer");
   });

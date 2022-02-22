@@ -3,10 +3,6 @@ describe("delete customer", () => {
   it("visit localhost", () => {
     cy.visit("http://localhost:3000/", { failOnStatusCode: false });
   });
-  it("open customer dropdown", () => {
-    cy.get('[data-cy="open-customer-dropdown"]').click();
-    cy.get('[data-cy="customer-information"]').should("exist");
-  });
   it("check if 3 customers exist", () => {
     cy.get('[data-cy="customer-information"]').should("have.length", 3);
   });

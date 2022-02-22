@@ -15,12 +15,12 @@ const SideBar = () => {
         </div>
         <div className="w-full">
           <NavLink
-            className="flex flex-col items-center justify-center text-3xl text-center p-5 hover:bg-gray-400"
+            className="flex flex-col items-center justify-center text-3xl text-center p-5 hover:bg-gray-500"
             to="/customers"
             data-cy="sidebar-customers-icon"
             style={({ isActive }) => {
               return {
-                backgroundColor: isActive ? "#D1D5DB" : "",
+                backgroundColor: isActive ? "#9CA3AF" : "",
               };
             }}
           >
@@ -32,12 +32,12 @@ const SideBar = () => {
             Customers
           </NavLink>
           <NavLink
-            className="flex flex-col items-center justify-center text-3xl text-center p-5 hover:bg-gray-400"
+            className="flex flex-col items-center justify-center text-3xl text-center p-5 hover:bg-gray-500"
             to="/employees"
             data-cy="sidebar-employees-icon"
             style={({ isActive }) => {
               return {
-                backgroundColor: isActive ? "#D1D5DB" : "",
+                backgroundColor: isActive ? "#9CA3AF" : "",
               };
             }}
           >

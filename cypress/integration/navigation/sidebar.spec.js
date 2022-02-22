@@ -1,12 +1,11 @@
 /// <reference types="Cypress" />
-describe("check routes", () => {
+describe("check sidebar routes", () => {
   it("visit localhost", () => {
     cy.visit("http://localhost:3000/", { failOnStatusCode: false });
   });
 
   it("check default route", () => {
     cy.contains("Customers");
-    cy.get('[data-cy="open-customer-dropdown"]').should("exist");
   });
 
   it("check employee route", () => {

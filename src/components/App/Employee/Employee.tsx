@@ -4,6 +4,23 @@ import { FcSearch } from "react-icons/fc";
 // Redux
 import { useAppSelector } from "../../../redux/hooks";
 
+interface Employees {
+  filter: any;
+  employees?: {
+    employeeId: number;
+    employeeName: string;
+    employeeEntryDate: Date;
+    employeeDepartment: string;
+  }[];
+}
+
+interface EmployeeEntry {
+  employeeId: number;
+  employeeName: string;
+  employeeEntryDate: Date;
+  employeeDepartment: string;
+}
+
 const Employee = () => {
   const employeesRedux = useAppSelector((state) => state.employee.employees);
   const [employees, setEmployees] = useState(employeesRedux);
@@ -17,12 +34,12 @@ const Employee = () => {
   const onQueryChanged = (e: React.FormEvent<HTMLInputElement>) =>
     setQuery(e.currentTarget.value);
 
-  const filterEmployees = (employees: any[], query: string) => {
+  const filterEmployees = (employees: Employees, query: string) => {
     if (!query) {
       return employees;
     }
 
-    return employees.filter((employeesEntry) => {
+    return employees.filter((employeesEntry: EmployeeEntry) => {
       const employeeName = employeesEntry.employeeName.toLowerCase();
       return employeeName.includes(query.toLowerCase().trim());
     });
@@ -56,13 +73,24 @@ const Employee = () => {
         <h1 className="font-bold" data-cy="employee-information">
           Employee-Information
         </h1>
-        {filteredEmployees.map((employeesEntry) => (
-          <div className="bg-gray-300 p-3 m-3 rounded" key={employeesEntry.id}>
+        {filteredEmployees.map((employeesEntry: EmployeeEntry) => (
+          <div
+            className="bg-gray-300 p-3 m-3 rounded"
+            key={employeesEntry.employeeId}
+          >
             <div data-cy="customer-id">
               Employee-ID:&nbsp;{employeesEntry.employeeId}
             </div>
             <div data-cy="customer-name">
               Employee-Name:&nbsp;{employeesEntry.employeeName}
+            </div>
+            <div data-cy="customer-name">
+              Employee-Entry-Date:&nbsp;
+              {employeesEntry.employeeEntryDate.toLocaleDateString()}
+            </div>
+            <div data-cy="customer-name">
+              Employee-Deparment:&nbsp;
+              {employeesEntry.employeeDepartment}
             </div>
           </div>
         ))}

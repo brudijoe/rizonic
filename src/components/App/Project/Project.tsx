@@ -34,7 +34,7 @@ const Project = (props: Props) => {
   return (
     <div className="w-full rounded border border-black p-3 bg-gray-200">
       {dropDownProjects ? (
-        <div className="flex flex-row ml-3 mr-3 items-center justify-between">
+        <div className="flex flex-row items-center justify-between">
           <div className="flex flex-row items-center">
             <div>
               <IconContext.Provider value={{ size: "2em" }}>
@@ -53,7 +53,7 @@ const Project = (props: Props) => {
           />
         </div>
       ) : (
-        <div className="flex flex-row ml-3 mr-3 items-center justify-between">
+        <div className="flex flex-row items-center justify-between">
           <div className="flex flex-row items-center">
             <div>
               <IconContext.Provider value={{ size: "2em" }}>
