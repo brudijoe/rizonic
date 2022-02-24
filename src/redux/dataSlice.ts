@@ -12,6 +12,7 @@ export interface InitialCustomer {
         taskId: number;
         taskName: string;
         taskStatus: string;
+        employee?: string;
       }[];
     }[];
   }[];
@@ -30,6 +31,7 @@ interface CustomerIdAndCustomers {
         taskId: number;
         taskName: string;
         taskStatus: string;
+        employee?: string;
       }[];
     }[];
   }[];
@@ -46,6 +48,7 @@ interface CustomerIdAndProjects {
       taskId: number;
       taskName: string;
       taskStatus: string;
+      employee?: string;
     }[];
   }[];
 }
@@ -58,6 +61,7 @@ interface CustomerIdAndTasks {
     taskId: number;
     taskName: string;
     taskStatus: string;
+    employee?: string;
   }[];
 }
 
@@ -73,6 +77,7 @@ interface CustomerIdAndProjectIdAndTaskId {
   currentTaskIdProps: number;
   taskName: string;
   taskStatus: string;
+  employee?: string;
 }
 
 const initialState: InitialCustomer = {
@@ -303,7 +308,7 @@ export const dataSlice = createSlice({
 
         const newTask = {
           taskId,
-          taskName: "",
+          taskName: "Empty",
           taskStatus: "In progress",
         };
         existingObject.tasks.push(newTask);
@@ -318,7 +323,8 @@ export const dataSlice = createSlice({
         currentProjectIdProps,
         currentTaskIdProps,
         taskName,
-        taskStatus
+        taskStatus,
+        employee,
       } = action.payload;
 
       const existingObject = state.customers
@@ -330,6 +336,7 @@ export const dataSlice = createSlice({
         console.log("Task found");
         existingObject.taskName = taskName;
         existingObject.taskStatus = taskStatus;
+        existingObject.employee = employee
       } else {
         console.log("Can't find task");
       }

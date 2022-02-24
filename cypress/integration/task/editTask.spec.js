@@ -27,7 +27,7 @@ describe("edit task", () => {
       cy.get('[data-cy="edit-task-input-save"]').contains("Buy Seeds");
     });
   });
-  describe("edit tast-status", () => {
+  describe("edit task-status", () => {
     it("click first edit button again", () => {
       cy.get('[data-cy="edit-task-button"]').first().click();
     });
@@ -39,6 +39,36 @@ describe("edit task", () => {
     });
     it("check task-status changes", () => {
       cy.get('[data-cy="edit-task-select-save"]').contains("On hold");
+    });
+  });
+
+  describe("edit employee", () => {
+    it("click first edit button again", () => {
+      cy.get('[data-cy="edit-task-button"]').first().click();
+    });
+    it("change employee to Ingo", () => {
+      cy.get('[data-cy="edit-employee-select"]').select(1);
+    });
+    it("save employee changes", () => {
+      cy.get('[data-cy="edit-task-button-save"]').first().click();
+    });
+    it("check employee changes", () => {
+      cy.get('[data-cy="edit-employee-select-save"]').contains("Ingo");
+    });
+
+    describe("change employee", () => {
+      it("click first edit button again again", () => {
+        cy.get('[data-cy="edit-task-button"]').first().click();
+      });
+      it("change employee to Bob", () => {
+        cy.get('[data-cy="edit-employee-select"]').select(2);
+      });
+      it("save employee changes again", () => {
+        cy.get('[data-cy="edit-task-button-save"]').first().click();
+      });
+      it("check employee changes again", () => {
+        cy.get('[data-cy="edit-employee-select-save"]').contains("Bob");
+      });
     });
   });
 });

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { taskEdited } from "../../../redux/dataSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { IconContext } from "react-icons";
 import { GrEdit } from "react-icons/gr";
 import { MdDone } from "react-icons/md";
@@ -13,11 +13,20 @@ interface Props {
     taskId: number;
     taskName: string;
     taskStatus: string;
+    employee?: string;
   };
 }
 
 const EditTask = (props: Props) => {
   const dispatch = useAppDispatch();
+
+  // Employee Redux
+  const employeesRedux = useAppSelector((state) => state.employee.employees);
+  const [employees, setEmployees] = useState(employeesRedux);
+
+  useEffect(() => {
+    setEmployees(employeesRedux);
+  }, [employeesRedux]);
 
   const [isTaskEdited, setIsTaskEdited] = useState(false);
   const handleEditTask = () => {
@@ -28,11 +37,19 @@ const EditTask = (props: Props) => {
   const handleTaskNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
     setTaskName(e.currentTarget.value);
 
-  const taskStatus = ["", "In progress", "On hold", "Done"];
-  const [currentTaskStatus, setCurrentTaskStatus] = useState<string>("");
-
+  const taskStatus = ["In progress", "On hold", "Done"];
+  const [currentTaskStatus, setCurrentTaskStatus] = useState<string>(
+    props.taskEntry.taskStatus
+  );
   const handleNewTaskStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCurrentTaskStatus(e.currentTarget.value);
+  };
+
+  const [currentEmployee, setCurrentEmployee] = useState<string>(
+    props.taskEntry.employee
+  );
+  const handleNewEmployee = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCurrentEmployee(e.currentTarget.value);
   };
 
   const currentCustomerIdProps = props.currentCustomerId;
@@ -49,6 +66,7 @@ const EditTask = (props: Props) => {
             currentTaskIdProps,
             taskName,
             taskStatus: currentTaskStatus,
+            employee: currentEmployee,
           })
         );
         unwrapResult(resultAction);
@@ -79,23 +97,64 @@ const EditTask = (props: Props) => {
       {isTaskEdited ? (
         <td>
           <select
-            className=""
             name="taskstatus"
             id="taskstatus"
             onChange={handleNewTaskStatus}
             data-cy="edit-task-select"
           >
-            <option value={taskStatus[0]}>{taskStatus[0]}</option>
-            <option value={taskStatus[1]}>{taskStatus[1]}</option>
-            <option value={taskStatus[2]}>{taskStatus[2]}</option>
-            <option value={taskStatus[3]}>{taskStatus[3]}</option>
+            <option value={props.taskEntry.taskStatus}>
+              {props.taskEntry.taskStatus}
+            </option>
+            <option
+              value={taskStatus[0]}
+              hidden={props.taskEntry.taskStatus === taskStatus[0]}
+            >
+              {taskStatus[0]}
+            </option>
+            <option
+              value={taskStatus[1]}
+              hidden={props.taskEntry.taskStatus === taskStatus[1]}
+            >
+              {taskStatus[1]}
+            </option>
+            <option
+              value={taskStatus[2]}
+              hidden={props.taskEntry.taskStatus === taskStatus[2]}
+            >
+              {taskStatus[2]}
+            </option>
           </select>
         </td>
       ) : (
         <td data-cy="edit-task-select-save">{props.taskEntry.taskStatus}</td>
       )}
 
-      <td>Empty</td>
+      {isTaskEdited ? (
+        <td>
+          <select
+            name="employee"
+            id="employee"
+            onChange={handleNewEmployee}
+            data-cy="edit-employee-select"
+          >
+            <option value={props.taskEntry.employee}>
+              {props.taskEntry.employee}
+            </option>
+            {employees.map((employeeEntry) => (
+              <option
+                key={employeeEntry.employeeId}
+                value={employeeEntry.employeeName}
+                hidden={props.taskEntry.employee === employeeEntry.employeeName}
+              >
+                {employeeEntry.employeeName}
+              </option>
+            ))}
+          </select>
+        </td>
+      ) : (
+        <td data-cy="edit-employee-select-save">{props.taskEntry.employee}</td>
+      )}
+
       <td>
         <div className="flex items-center justify-center">
           {isTaskEdited ? (

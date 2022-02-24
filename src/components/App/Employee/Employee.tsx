@@ -86,7 +86,7 @@ const Employee = () => {
             </div>
             <div data-cy="customer-name">
               Employee-Entry-Date:&nbsp;
-              {employeesEntry.employeeEntryDate.toLocaleDateString()}
+              {employeesEntry.employeeEntryDate}
             </div>
             <div data-cy="customer-name">
               Employee-Deparment:&nbsp;

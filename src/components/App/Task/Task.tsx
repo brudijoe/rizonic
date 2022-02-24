@@ -14,6 +14,7 @@ interface Props {
       taskId: number;
       taskName: string;
       taskStatus: string;
+      employee?: string;
     }[];
   };
 }

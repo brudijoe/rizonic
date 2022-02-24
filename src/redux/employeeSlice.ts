@@ -5,15 +5,15 @@ export interface InitialEmployee {
     employeeId: number;
     employeeName: string;
     employeeDepartment: string,
-    employeeEntryDate: Date;
+    employeeEntryDate: string;
   }[];
 }
 
 const initialState: InitialEmployee = {
   employees: [
-    { employeeId: 1, employeeName: "Ingo", employeeEntryDate: new Date("2019-01-16"), employeeDepartment: "IT" },
-    { employeeId: 2, employeeName: "Bob", employeeEntryDate: new Date("2018-10-25"), employeeDepartment: "Sales" },
-    { employeeId: 3, employeeName: "Inga", employeeEntryDate: new Date("2015-04-05"), employeeDepartment: "Logistics" },
+    { employeeId: 1, employeeName: "Ingo", employeeEntryDate: new Date("2019-01-16").toLocaleString(), employeeDepartment: "IT" },
+    { employeeId: 2, employeeName: "Bob", employeeEntryDate: new Date("2018-10-25").toLocaleString(), employeeDepartment: "Sales" },
+    { employeeId: 3, employeeName: "Inga", employeeEntryDate: new Date("2015-04-05").toLocaleString(), employeeDepartment: "Logistics" },
   ],
 };
 
