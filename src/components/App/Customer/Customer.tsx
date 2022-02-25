@@ -25,7 +25,7 @@ const Customer = () => {
         </div>
         {customers.map((customerEntry) => (
           <div className="flex" key={customerEntry.customerId}>
-            <div className="w-full bg-gray-500 rounded border border-black p-3 mt-3">
+            <div className="w-full bg-gray-400 rounded border border-black p-3 mt-3">
               <h1 className="font-bold" data-cy="customer-information">
                 Customer-Information
               </h1>

@@ -69,13 +69,13 @@ const Employee = () => {
           </IconContext.Provider>
         </div>
       </div>
-      <div className="bg-gray-100 rounded p-3 border border-black">
+      <div className="bg-gray-100 rounded pt-3 pr-3 pl-3 border border-black">
         <h1 className="font-bold" data-cy="employee-information">
           Employee-Information
         </h1>
         {filteredEmployees.map((employeesEntry: EmployeeEntry) => (
           <div
-            className="bg-gray-300 p-3 m-3 rounded"
+            className="bg-gray-300 p-3 my-3 rounded border border-black"
             key={employeesEntry.employeeId}
           >
             <div data-cy="customer-id">

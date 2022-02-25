@@ -34,8 +34,8 @@ const Task = (props: Props) => {
           projectEntry={props.projectEntry}
         />
       </div>
-      <table className="w-full text-center border border-black divide-y divide-black">
-        <thead className="bg-gray-200">
+      <table className="w-full text-center">
+        <thead className="bg-gray-300">
           <tr className="">
             <th className="">Task-ID</th>
             <th>Task-Name</th>
@@ -45,9 +45,9 @@ const Task = (props: Props) => {
             <th>Delete</th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-black">
+        <tbody className="bg-white">
           {props.projectEntry.tasks.map((taskEntry) => (
-            <tr key={taskEntry.taskId} className="">
+            <tr key={taskEntry.taskId} className="even:bg-gray-200">
               <EditTask
                 currentCustomerId={props.currentCustomerId}
                 currentProjectId={props.projectEntry.projectId}
