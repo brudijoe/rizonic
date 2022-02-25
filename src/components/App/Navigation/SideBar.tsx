@@ -3,7 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 // React Icons
 import { IconContext } from "react-icons";
-import { FcBusinessman, FcManager } from "react-icons/fc";
+import { FcBusinessman, FcManager, FcStatistics } from "react-icons/fc";
 
 const SideBar = () => {
   return (
@@ -47,6 +47,23 @@ const SideBar = () => {
               <FcManager />
             </IconContext.Provider>
             Employees
+          </NavLink>
+          <NavLink
+            className="flex flex-col items-center justify-center text-3xl text-center p-5 hover:bg-gray-500"
+            to="/statistics"
+            data-cy="sidebar-statistics-icon"
+            style={({ isActive }) => {
+              return {
+                backgroundColor: isActive ? "#9CA3AF" : "",
+              };
+            }}
+          >
+            <IconContext.Provider
+              value={{ size: "2em", className: "global-class-name" }}
+            >
+              <FcStatistics />
+            </IconContext.Provider>
+            Statistics
           </NavLink>
         </div>
       </div>

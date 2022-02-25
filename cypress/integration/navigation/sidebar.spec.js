@@ -19,4 +19,10 @@ describe("check sidebar routes", () => {
       failOnStatusCode: false,
     }).contains("Customers");
   });
+
+  it("check statistics route", () => {
+    cy.visit("http://localhost:3000/statistics", {
+      failOnStatusCode: false,
+    }).contains("Statistics");
+  });
 });
