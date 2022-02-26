@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 // Redux
 import { useAppSelector } from "../../../redux/hooks";
 import {
@@ -74,24 +74,6 @@ const Statistics = () => {
       },
     },
   };
-
-  // const data = {
-  //   labels,
-  //   datasets: [
-  //     {
-  //       label: "Employees",
-  //       data: employees.map((employeesEntry) => employeesEntry),
-  //       borderColor: "rgb(255, 99, 132)",
-  //       backgroundColor: "rgba(255, 99, 132, 0.5)",
-  //     },
-  //     {
-  //       label: "Customers",
-  //       data: customersStatistics.map((customersEntry) => customersEntry),
-  //       borderColor: "rgb(53, 162, 235)",
-  //       backgroundColor: "rgba(53, 162, 235, 0.5)",
-  //     },
-  //   ],
-  // };
 
   return (
     <div className="w-10/12 h-full min-h-screen bg-gray-600 p-3">
