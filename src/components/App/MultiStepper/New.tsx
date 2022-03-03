@@ -27,21 +27,33 @@ const New = () => {
   const [isAddProjectStepActive, setIsAddProjectStepActive] = useState(false);
   const [isAddTaskStepActive, setIsAddTaskStepActive] = useState(false);
 
+  const handlePreviousClick = () => {
+    if (isAddProjectStepActive) {
+      setIsAddTaskStepActive(false);
+      setIsAddProjectStepActive(false);
+      setIsAddCustomerStepActive(true);
+    }
+    if (isAddTaskStepActive) {
+      setIsAddTaskStepActive(false);
+      setIsAddProjectStepActive(true);
+      setIsAddCustomerStepActive(false);
+    }
+  };
+
   const handleNextClick = () => {
-    if (customerName.length > 0) {
-      if (isAddCustomerStepActive) {
-        setIsAddProjectStepActive(true);
-        setIsAddCustomerStepActive(false);
-      }
-      if (isAddProjectStepActive) {
-        setIsAddTaskStepActive(true);
-        setIsAddProjectStepActive(false);
-      }
+    if (customerName.length > 0 && isAddCustomerStepActive) {
+      setIsAddProjectStepActive(true);
+      setIsAddCustomerStepActive(false);
+    }
+    if (projectName.length > 0 && isAddProjectStepActive) {
+      setIsAddTaskStepActive(true);
+      setIsAddProjectStepActive(false);
     }
   };
 
   const onSaveMultiStepperClicked = async () => {
-    if (customerName.length > 1) {
+    // TODO Taskname should be > 0
+    if (customerName.length > 0) {
       try {
         const resultAction = await dispatch(
           customerAdded({
@@ -77,40 +89,55 @@ const New = () => {
       <div className="p-3 mb-3 bg-gray-100 rounded border border-black">
         <h1 className="text-2xl font-bold">New</h1>
       </div>
-      <div className="flex flex-row justify-around p-3 mb-3 bg-gray-100 rounded border border-black">
-        <div className="flex flex-col items-center">
-          <h1 className="text-2xl font-bold bg-green-500 rounded-full w-8 text-center">
+      <div className="flex flex-col p-3 mb-3 bg-gray-100 rounded border border-black">
+        <div className="flex flex-row items-center">
+          <h1 className="w-1/5 text-2xl font-bold bg-green-500 rounded-full text-center">
             1
           </h1>
-          <h1 className="text-2xl font-bold">Add Customer</h1>
-        </div>
-        <div className="flex flex-col items-center">
+
+          <hr
+            className={
+              isAddCustomerStepActive
+                ? "w-1/5 border-t-8 border-gray-500"
+                : "w-1/5 border-t-8 border-green-500"
+            }
+          />
           <h1
             className={
               isAddProjectStepActive || isAddTaskStepActive
-                ? "text-2xl font-bold bg-green-500 rounded-full w-8 text-center"
-                : "text-2xl font-bold text-center"
+                ? "w-1/5 text-2xl font-bold bg-green-500 rounded-full text-center"
+                : "w-1/5 text-2xl font-bold bg-gray-500 rounded-full text-center"
             }
           >
             2
           </h1>
-          <h1 className="text-2xl font-bold">Add Project</h1>
-        </div>
-        <div className="flex flex-col items-center">
+
+          <hr
+            className={
+              isAddTaskStepActive
+                ? "w-1/5 border-t-8 border-green-500"
+                : "w-1/5 border-t-8 border-gray-500"
+            }
+          />
           <h1
             className={
               isAddTaskStepActive
-                ? "text-2xl font-bold bg-green-500 rounded-full w-8 text-center"
-                : "text-2xl font-bold text-center"
+                ? "w-1/5 text-2xl font-bold bg-green-500 rounded-full text-center"
+                : "w-1/5 text-2xl font-bold bg-gray-500 rounded-full text-center"
             }
           >
             3
           </h1>
-          <h1 className="text-2xl font-bold">Add Task</h1>
         </div>
-      </div>
 
-      <div className="p-3 bg-gray-100 rounded border border-black">
+        <div className="flex flex-row text-center items-center justify-around mb-10">
+          <h1 className="w-1/5 text-2xl font-bold">Add Customer</h1>
+          <hr className="w-1/5 invisible" />
+          <h1 className="w-1/5 text-2xl font-bold">Add Project</h1>
+          <hr className="w-1/5 invisible" />
+          <h1 className="w-1/5 text-2xl font-bold">Add Task</h1>
+        </div>
+
         {isAddCustomerStepActive && (
           <div className="flex flex-col">
             <div className="">Customer-Name:</div>
@@ -123,6 +150,14 @@ const New = () => {
               autoFocus
               data-cy="add-customer-input"
             />
+            <button
+              type="button"
+              className="h-7 w-20 rounded bg-green-500 border-black border hover:bg-green-300"
+              onClick={handleNextClick}
+              data-cy="add-customer-next-button"
+            >
+              Next
+            </button>
           </div>
         )}
         {isAddProjectStepActive && (
@@ -137,6 +172,26 @@ const New = () => {
               autoFocus
               data-cy="add-project-input"
             />
+
+            <div className="flex flex-row">
+              <button
+                type="button"
+                className="mr-3 h-7 w-20 rounded bg-green-500 border-black border hover:bg-green-300"
+                onClick={handlePreviousClick}
+                data-cy="customer-previous-button"
+              >
+                Previous
+              </button>
+
+              <button
+                type="button"
+                className="h-7 w-20 rounded bg-green-500 border-black border hover:bg-green-300"
+                onClick={handleNextClick}
+                data-cy="save-customer-next-button"
+              >
+                Next
+              </button>
+            </div>
           </div>
         )}
         {isAddTaskStepActive && (
@@ -151,27 +206,27 @@ const New = () => {
               autoFocus
               data-cy="add-task-input"
             />
-          </div>
-        )}
 
-        {isAddTaskStepActive ? (
-          <button
-            type="button"
-            className="h-7 w-20 rounded bg-green-500 border-black border hover:bg-green-300"
-            onClick={onSaveMultiStepperClicked}
-            data-cy="save-customer-next-button"
-          >
-            Save
-          </button>
-        ) : (
-          <button
-            type="button"
-            className="h-7 w-20 rounded bg-green-500 border-black border hover:bg-green-300"
-            onClick={handleNextClick}
-            data-cy="add-customer-next-button"
-          >
-            Next
-          </button>
+            <div className="flex flex-row">
+              <button
+                type="button"
+                className="mr-3 h-7 w-20 rounded bg-green-500 border-black border hover:bg-green-300"
+                onClick={handlePreviousClick}
+                data-cy="customer-previous-button"
+              >
+                Previous
+              </button>
+
+              <button
+                type="button"
+                className="h-7 w-20 rounded bg-green-500 border-black border hover:bg-green-300"
+                onClick={onSaveMultiStepperClicked}
+                data-cy="save-customer-next-button"
+              >
+                Save
+              </button>
+            </div>
+          </div>
         )}
       </div>
     </div>
