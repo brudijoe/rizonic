@@ -8,6 +8,12 @@ describe("check sidebar routes", () => {
     cy.contains("Customers");
   });
 
+  it("check new route", () => {
+    cy.visit("http://localhost:3000/new", {
+      failOnStatusCode: false,
+    }).contains("New");
+  });
+
   it("check employee route", () => {
     cy.visit("http://localhost:3000/employees", {
       failOnStatusCode: false,
