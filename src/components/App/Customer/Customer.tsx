@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import AddCustomer from "./AddCustomer";
 import DeleteCustomer from "./DeleteCustomer";
 import EditCustomer from "./EditCustomer";
 import Project from "../Project/Project";
@@ -21,7 +20,6 @@ const Customer = () => {
           <div className="flex flex-row items-center">
             <h1 className="text-center text-2xl font-bold">Customers</h1>
           </div>
-          <AddCustomer />
         </div>
         {customers.map((customerEntry) => (
           <div className="flex" key={customerEntry.customerId}>
