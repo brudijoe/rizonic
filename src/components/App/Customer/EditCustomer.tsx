@@ -63,7 +63,7 @@ const EditCustomer = (props: Props) => {
               </div>
             </div>
             <div className="flex flex-row mt-3">
-              <div className="w-3/6">Customer-Name:</div>
+              <label className="w-3/6">Customer-Name:</label>
               <div className="w-3/6">
                 <input
                   maxLength={100}

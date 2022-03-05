@@ -4,15 +4,16 @@ import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 
 const New = () => {
-  // TODO Print error if customername empty
-  // TODO Ripple Effect for Next Button
   // TODO Animation from 1 to 2 to 3 ?
-  // TODO Conditional Rendering for Save Button to "Saved"
   const dispatch = useAppDispatch();
 
   const [customerName, setCustomerName] = useState<string>("");
   const onCustomerNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
     setCustomerName(e.currentTarget.value);
+
+  const [customerNameError, setCustomerNameError] = useState(false);
+  const [projectNameError, setProjectNameError] = useState(false);
+  const [taskNameError, setTaskNameError] = useState(false);
 
   const customers = useAppSelector((state) => state.data.customers);
   const lastCustomerId = useAppSelector(
@@ -22,6 +23,10 @@ const New = () => {
   const [projectName, setProjectName] = useState<string>("");
   const onProjectNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
     setProjectName(e.currentTarget.value);
+
+  const [taskName, setTaskName] = useState<string>("");
+  const onTaskNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
+    setTaskName(e.currentTarget.value);
 
   const [isAddCustomerStepActive, setIsAddCustomerStepActive] = useState(true);
   const [isAddProjectStepActive, setIsAddProjectStepActive] = useState(false);
@@ -41,19 +46,31 @@ const New = () => {
   };
 
   const handleNextClick = () => {
+    if (customerName.length === 0 && isAddCustomerStepActive) {
+      setCustomerNameError(true);
+    }
+    if (projectName.length === 0 && isAddProjectStepActive) {
+      setProjectNameError(true);
+    }
     if (customerName.length > 0 && isAddCustomerStepActive) {
       setIsAddProjectStepActive(true);
       setIsAddCustomerStepActive(false);
+      setCustomerNameError(false);
+      setProjectNameError(false);
     }
     if (projectName.length > 0 && isAddProjectStepActive) {
       setIsAddTaskStepActive(true);
       setIsAddProjectStepActive(false);
+      setProjectNameError(true);
+      setTaskNameError(false);
     }
   };
 
   const onSaveMultiStepperClicked = async () => {
-    // TODO Taskname should be > 0
-    if (customerName.length > 0) {
+    if (taskName.length === 0) {
+      setTaskNameError(true);
+    }
+    if (taskName.length > 0) {
       try {
         const resultAction = await dispatch(
           customerAdded({
@@ -67,7 +84,7 @@ const New = () => {
                 tasks: [
                   {
                     taskId: 1,
-                    taskName: "",
+                    taskName: taskName,
                     taskStatus: "",
                     employee: "",
                   },
@@ -78,6 +95,11 @@ const New = () => {
         );
         unwrapResult(resultAction);
         setCustomerName("");
+        setProjectName("");
+        setTaskName("");
+        setIsAddCustomerStepActive(true);
+        setIsAddTaskStepActive(false);
+        setIsAddProjectStepActive(false);
       } catch (err) {
         console.error("Failed to add new customer: ", err);
       }
@@ -140,19 +162,34 @@ const New = () => {
 
         {isAddCustomerStepActive && (
           <div className="flex flex-col">
-            <div className="">Customer-Name:</div>
+            <label className="font-bold" data-cy="customername-label">
+              Customer-Name:
+            </label>
             <input
               className="h-7 mb-3 p-3 rounded border border-black focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
               onChange={onCustomerNameChanged}
               value={customerName}
-              minLength={2}
               maxLength={100}
               autoFocus
               data-cy="add-customer-input"
             />
+            {customerName.length === 0 && customerNameError && (
+              <div
+                className={
+                  "w-full mb-3 p-1 rounded font-bold text-red-700 border-2 border-red-700"
+                }
+                cy-data="customerName-error"
+              >
+                Error: Customer-Name can't be empty
+              </div>
+            )}
             <button
               type="button"
-              className="h-7 w-20 rounded bg-green-500 border-black border hover:bg-green-300"
+              className={
+                customerName.length === 0
+                  ? "h-7 w-20 rounded border-black border"
+                  : "h-7 w-20 rounded bg-green-500 border-black border hover:bg-green-300"
+              }
               onClick={handleNextClick}
               data-cy="add-customer-next-button"
             >
@@ -162,32 +199,48 @@ const New = () => {
         )}
         {isAddProjectStepActive && (
           <div className="flex flex-col">
-            <div className="">Project-Name:</div>
+            <label className="font-bold" data-cy="projectname-label">
+              Project-Name:
+            </label>
             <input
               className="h-7 mb-3 p-3 rounded border border-black focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
               onChange={onProjectNameChanged}
               value={projectName}
-              minLength={2}
               maxLength={100}
               autoFocus
               data-cy="add-project-input"
             />
+
+            {projectName.length === 0 && projectNameError && (
+              <div
+                className={
+                  "w-full mb-3 p-1 rounded font-bold text-red-700 border-2 border-red-700"
+                }
+                cy-data="projectName-error"
+              >
+                Error: Project-Name can't be empty
+              </div>
+            )}
 
             <div className="flex flex-row">
               <button
                 type="button"
                 className="mr-3 h-7 w-20 rounded bg-green-500 border-black border hover:bg-green-300"
                 onClick={handlePreviousClick}
-                data-cy="customer-previous-button"
+                data-cy="project-previous-button"
               >
                 Previous
               </button>
 
               <button
                 type="button"
-                className="h-7 w-20 rounded bg-green-500 border-black border hover:bg-green-300"
+                className={
+                  projectName.length === 0
+                    ? "h-7 w-20 rounded border-black border"
+                    : "h-7 w-20 rounded bg-green-500 border-black border hover:bg-green-300"
+                }
                 onClick={handleNextClick}
-                data-cy="save-customer-next-button"
+                data-cy="add-project-next-button"
               >
                 Next
               </button>
@@ -196,32 +249,48 @@ const New = () => {
         )}
         {isAddTaskStepActive && (
           <div className="flex flex-col">
-            <div className="">Task-Name:</div>
+            <label className="font-bold" data-cy="taskname-label">
+              Task-Name:
+            </label>
             <input
               className="h-7 mb-3 p-3 rounded border border-black focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
-              // onChange={onCustomerNameChanged}
-              // value={customerName}
-              minLength={2}
+              onChange={onTaskNameChanged}
+              value={taskName}
               maxLength={100}
               autoFocus
               data-cy="add-task-input"
             />
+
+            {taskName.length === 0 && taskNameError && (
+              <div
+                className={
+                  "w-full mb-3 p-1 rounded font-bold text-red-700 border-2 border-red-700"
+                }
+                cy-data="taskName-error"
+              >
+                Error: Task-Name can't be empty
+              </div>
+            )}
 
             <div className="flex flex-row">
               <button
                 type="button"
                 className="mr-3 h-7 w-20 rounded bg-green-500 border-black border hover:bg-green-300"
                 onClick={handlePreviousClick}
-                data-cy="customer-previous-button"
+                data-cy="task-previous-button"
               >
                 Previous
               </button>
 
               <button
                 type="button"
-                className="h-7 w-20 rounded bg-green-500 border-black border hover:bg-green-300"
+                className={
+                  taskName.length === 0
+                    ? "h-7 w-20 rounded border border-black"
+                    : "h-7 w-20 rounded border border-black bg-blue-500 hover:bg-blue-300"
+                }
                 onClick={onSaveMultiStepperClicked}
-                data-cy="save-customer-next-button"
+                data-cy="save-task-next-button"
               >
                 Save
               </button>

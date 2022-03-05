@@ -83,7 +83,7 @@ const AddProject = (props: Props) => {
           </div>
           <div className="flex flex-col mt-3">
             <div className="flex">
-              <div className="w-3/6">Project-Name:</div>
+              <label className="w-3/6">Project-Name:</label>
               <div className="w-3/6">
                 <input
                   maxLength={100}
@@ -96,7 +96,7 @@ const AddProject = (props: Props) => {
               </div>
             </div>
             <div className="flex mb-3">
-              <div className="w-3/6">Project-Status:</div>
+              <label className="w-3/6">Project-Status:</label>
               <div className="w-3/6">
                 <select
                   className="w-full h-7 rounded"
