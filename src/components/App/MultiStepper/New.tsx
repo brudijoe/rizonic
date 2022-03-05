@@ -4,7 +4,9 @@ import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 
 const New = () => {
-  // TODO Animation from 1 to 2 to 3 ?
+  // TODO Add Project-Status
+  // TODO Add Task-Status and Employee
+  // TODO Upate Tests accordingly
   const dispatch = useAppDispatch();
 
   const [customerName, setCustomerName] = useState<string>("");
