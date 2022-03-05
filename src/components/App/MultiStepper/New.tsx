@@ -110,9 +110,6 @@ const New = () => {
 
   return (
     <div className="w-10/12 h-full min-h-screen bg-gray-600 p-3">
-      <div className="p-3 mb-3 bg-gray-100 rounded border border-black">
-        <h1 className="text-2xl font-bold">New</h1>
-      </div>
       <div className="flex flex-col p-3 mb-3 bg-gray-100 rounded border border-black">
         <div className="flex flex-row items-center">
           <h1 className="w-1/5 text-2xl font-bold bg-green-500 rounded-full text-center">
