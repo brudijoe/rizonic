@@ -4,8 +4,7 @@ import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 
 const New = () => {
-  // TODO Add Task-Status and Employee
-  // TODO Upate Tests accordingly
+  // TODO Refactoring
   const dispatch = useAppDispatch();
 
   const [customerName, setCustomerName] = useState<string>("");
@@ -37,6 +36,12 @@ const New = () => {
   const [currentTaskStatus, setCurrentTaskStatus] = useState<string>("");
   const handleNewTaskStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCurrentTaskStatus(e.currentTarget.value);
+  };
+
+  const employeesRedux = useAppSelector((state) => state.employee.employees);
+  const [currentEmployee, setCurrentEmployee] = useState<string>("");
+  const handleNewEmployee = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCurrentEmployee(e.currentTarget.value);
   };
 
   const [isAddCustomerStepActive, setIsAddCustomerStepActive] = useState(true);
@@ -97,7 +102,7 @@ const New = () => {
                     taskId: 1,
                     taskName: taskName,
                     taskStatus: currentTaskStatus,
-                    employee: "",
+                    employee: currentEmployee,
                   },
                 ],
               },
@@ -302,6 +307,29 @@ const New = () => {
                 <option value={taskStatus[1]}>{taskStatus[1]}</option>
                 <option value={taskStatus[2]}>{taskStatus[2]}</option>
                 <option value={taskStatus[3]}>{taskStatus[3]}</option>
+              </select>
+            </div>
+
+            <label className="font-bold" data-cy="employee-label">
+              Employee:
+            </label>
+            <div className="w-full border border-black rounded mb-3">
+              <select
+                className="w-full h-7 rounded"
+                name="employee"
+                id="employee"
+                onChange={handleNewEmployee}
+                data-cy="edit-employee-select"
+              >
+                <option></option>
+                {employeesRedux.map((employeeEntry) => (
+                  <option
+                    key={employeeEntry.employeeId}
+                    value={employeeEntry.employeeName}
+                  >
+                    {employeeEntry.employeeName}
+                  </option>
+                ))}
               </select>
             </div>
 
