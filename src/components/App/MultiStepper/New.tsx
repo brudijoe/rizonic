@@ -4,7 +4,6 @@ import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 
 const New = () => {
-  // TODO Add Project-Status
   // TODO Add Task-Status and Employee
   // TODO Upate Tests accordingly
   const dispatch = useAppDispatch();
@@ -34,6 +33,11 @@ const New = () => {
   const [taskName, setTaskName] = useState<string>("");
   const onTaskNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
     setTaskName(e.currentTarget.value);
+  const taskStatus = ["", "In progress", "On hold", "Done"];
+  const [currentTaskStatus, setCurrentTaskStatus] = useState<string>("");
+  const handleNewTaskStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCurrentTaskStatus(e.currentTarget.value);
+  };
 
   const [isAddCustomerStepActive, setIsAddCustomerStepActive] = useState(true);
   const [isAddProjectStepActive, setIsAddProjectStepActive] = useState(false);
@@ -92,7 +96,7 @@ const New = () => {
                   {
                     taskId: 1,
                     taskName: taskName,
-                    taskStatus: "",
+                    taskStatus: currentTaskStatus,
                     employee: "",
                   },
                 ],
@@ -214,24 +218,23 @@ const New = () => {
               autoFocus
               data-cy="add-project-input"
             />
-            <div className="flex flex-col mb-3">
-              <label className="font-bold" data-cy="projectstatus-label">
-                Project-Status:
-              </label>
-              <div className="w-full border border-black rounded">
-                <select
-                  className="w-full h-7 rounded"
-                  name="projectstatus"
-                  id="projectstatus"
-                  onChange={handleNewProjectStatus}
-                  data-cy="edit-project-select"
-                >
-                  <option value={projectStatus[0]}>{projectStatus[0]}</option>
-                  <option value={projectStatus[1]}>{projectStatus[1]}</option>
-                  <option value={projectStatus[2]}>{projectStatus[2]}</option>
-                  <option value={projectStatus[3]}>{projectStatus[3]}</option>
-                </select>
-              </div>
+
+            <label className="font-bold" data-cy="projectstatus-label">
+              Project-Status:
+            </label>
+            <div className="w-full border border-black rounded mb-3">
+              <select
+                className="w-full h-7 rounded"
+                name="projectstatus"
+                id="projectstatus"
+                onChange={handleNewProjectStatus}
+                data-cy="edit-project-select"
+              >
+                <option value={projectStatus[0]}>{projectStatus[0]}</option>
+                <option value={projectStatus[1]}>{projectStatus[1]}</option>
+                <option value={projectStatus[2]}>{projectStatus[2]}</option>
+                <option value={projectStatus[3]}>{projectStatus[3]}</option>
+              </select>
             </div>
 
             {projectName.length === 0 && projectNameError && (
@@ -283,6 +286,24 @@ const New = () => {
               autoFocus
               data-cy="add-task-input"
             />
+
+            <label className="font-bold" data-cy="taskstatus-label">
+              Task-Status:
+            </label>
+            <div className="w-full border border-black rounded mb-3">
+              <select
+                className="w-full h-7 rounded"
+                name="taskstatus"
+                id="taskstatus"
+                onChange={handleNewTaskStatus}
+                data-cy="edit-task-select"
+              >
+                <option value={taskStatus[0]}>{taskStatus[0]}</option>
+                <option value={taskStatus[1]}>{taskStatus[1]}</option>
+                <option value={taskStatus[2]}>{taskStatus[2]}</option>
+                <option value={taskStatus[3]}>{taskStatus[3]}</option>
+              </select>
+            </div>
 
             {taskName.length === 0 && taskNameError && (
               <div
