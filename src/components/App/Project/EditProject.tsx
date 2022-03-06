@@ -89,7 +89,7 @@ const EditProject = (props: Props) => {
             </div>
             <div className="flex mb-3">
               <label className="w-3/6">Project-Status:</label>
-              <div className="w-3/6">
+              <div className="w-3/6 border border-black rounded">
                 <select
                   className="w-full h-7 rounded"
                   name="projectstatus"

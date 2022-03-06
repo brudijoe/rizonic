@@ -25,6 +25,11 @@ const New = () => {
   const [projectName, setProjectName] = useState<string>("");
   const onProjectNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
     setProjectName(e.currentTarget.value);
+  const projectStatus = ["", "In progress", "On hold", "Done"];
+  const [currentProjectStatus, setCurrentProjectStatus] = useState<string>("");
+  const handleNewProjectStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCurrentProjectStatus(e.currentTarget.value);
+  };
 
   const [taskName, setTaskName] = useState<string>("");
   const onTaskNameChanged = (e: React.FormEvent<HTMLInputElement>) =>
@@ -82,7 +87,7 @@ const New = () => {
               {
                 projectId: 1,
                 projectName,
-                projectStatus: "",
+                projectStatus: currentProjectStatus,
                 tasks: [
                   {
                     taskId: 1,
@@ -209,6 +214,25 @@ const New = () => {
               autoFocus
               data-cy="add-project-input"
             />
+            <div className="flex flex-col mb-3">
+              <label className="font-bold" data-cy="projectstatus-label">
+                Project-Status:
+              </label>
+              <div className="w-full border border-black rounded">
+                <select
+                  className="w-full h-7 rounded"
+                  name="projectstatus"
+                  id="projectstatus"
+                  onChange={handleNewProjectStatus}
+                  data-cy="edit-project-select"
+                >
+                  <option value={projectStatus[0]}>{projectStatus[0]}</option>
+                  <option value={projectStatus[1]}>{projectStatus[1]}</option>
+                  <option value={projectStatus[2]}>{projectStatus[2]}</option>
+                  <option value={projectStatus[3]}>{projectStatus[3]}</option>
+                </select>
+              </div>
+            </div>
 
             {projectName.length === 0 && projectNameError && (
               <div
